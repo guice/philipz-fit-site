@@ -11,6 +11,9 @@ const ABOUT_BG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663284143252/3AM5H
 // Philip's actual portrait photo from Cloudinary
 const PHILIP_PHOTO = "https://res.cloudinary.com/dzjucinkn/image/upload/q_auto/f_auto/v1776802756/philip-portrait_wci9vg.png";
 
+// Faded gym background for depth behind portrait
+const GYM_BG = "https://res.cloudinary.com/dzjucinkn/image/upload/q_auto/f_auto/v1776806680/mohamed-fareed-rbSNsoXk-3A-unsplash_t8ba3h.jpg";
+
 function useVisible(threshold = 0.1) {
   const ref = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
@@ -79,7 +82,7 @@ export default function AboutSection() {
               transition: "opacity 0.7s ease, transform 0.7s ease",
             }}
           >
-            {/* Photo */}
+            {/* Photo with faded gym background for depth */}
             <div
               style={{
                 position: "relative",
@@ -88,19 +91,43 @@ export default function AboutSection() {
                 marginBottom: "1.5rem",
                 maxWidth: "460px",
                 border: "1px solid rgba(255,255,255,0.06)",
+                aspectRatio: "3/4",
               }}
             >
+              {/* Gym background layer */}
+              <div
+                style={{
+                  position: "absolute",
+                  inset: 0,
+                  backgroundImage: `url(${GYM_BG})`,
+                  backgroundSize: "cover",
+                  backgroundPosition: "center",
+                  opacity: 0.22,
+                  filter: "blur(2px) saturate(0.6)",
+                }}
+              />
+              {/* Dark vignette over gym bg */}
+              <div
+                style={{
+                  position: "absolute",
+                  inset: 0,
+                  background: "radial-gradient(ellipse at center, rgba(15,16,18,0.1) 0%, rgba(15,16,18,0.55) 100%)",
+                }}
+              />
+              {/* Philip's portrait */}
               <img
-                  src={PHILIP_PHOTO}
-                  alt="Philip — CPZ Fitness Coach"
-                  style={{
-                    width: "100%",
-                    aspectRatio: "3/4",
-                    objectFit: "cover",
-                    objectPosition: "top center",
-                    display: "block",
-                  }}
-                />
+                src={PHILIP_PHOTO}
+                alt="Philip — CPZ Fitness Coach"
+                style={{
+                  position: "relative",
+                  zIndex: 1,
+                  width: "100%",
+                  height: "100%",
+                  objectFit: "cover",
+                  objectPosition: "top center",
+                  display: "block",
+                }}
+              />
               {/* Orange bottom accent */}
               <div
                 style={{
@@ -110,6 +137,7 @@ export default function AboutSection() {
                   right: 0,
                   height: "3px",
                   background: "linear-gradient(to right, #ff8200, transparent)",
+                  zIndex: 2,
                 }}
               />
             </div>

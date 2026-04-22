@@ -7,7 +7,8 @@
 import { useEffect, useRef, useState } from "react";
 
 const COMMUNITY_BG = "https://res.cloudinary.com/dzjucinkn/image/upload/q_auto/f_auto/v1776806680/mohamed-fareed-rbSNsoXk-3A-unsplash_t8ba3h.jpg";
-const PHILIP_PODIUM = "https://res.cloudinary.com/dzjucinkn/image/upload/q_auto/f_auto/v1776803156/philip-podium_uijhsi.jpg";
+// Using the Spartan Race medal photo — shows Philip's full vertical profile
+const PHILIP_MEDAL = "https://res.cloudinary.com/dzjucinkn/image/upload/q_auto/f_auto/v1776803159/philip-finish_cqkte2.jpg";
 
 function useVisible(threshold = 0.15) {
   const ref = useRef<HTMLDivElement>(null);
@@ -216,42 +217,56 @@ export default function CommunitySection() {
             No credit card. No bro-science. Just systems that work.
           </p>
 
-          {/* Philip podium photo */}
+          {/* Philip medal photo — positioned right to show full vertical profile */}
           <div
             style={{
               marginTop: "3rem",
-              maxWidth: "420px",
+              maxWidth: "380px",
               margin: "3rem auto 0",
               borderRadius: "4px",
               overflow: "hidden",
-              border: "1px solid rgba(255, 130, 0, 0.15)",
+              border: "1px solid rgba(255, 130, 0, 0.2)",
               opacity: visible ? 1 : 0,
               transition: "opacity 0.6s ease 0.6s",
+              position: "relative",
             }}
           >
             <img
-              src={PHILIP_PODIUM}
-              alt="Philip on the podium"
+              src={PHILIP_MEDAL}
+              alt="Philip at Spartan Race finish with medal"
               style={{
                 width: "100%",
-                height: "280px",
+                height: "360px",
                 objectFit: "cover",
-                objectPosition: "top center",
+                objectPosition: "right center",
                 display: "block",
-                filter: "brightness(0.85) contrast(1.05)",
+                filter: "brightness(0.8) contrast(1.1)",
+              }}
+            />
+            {/* Bottom gradient */}
+            <div
+              style={{
+                position: "absolute",
+                bottom: 0,
+                left: 0,
+                right: 0,
+                height: "70px",
+                background: "linear-gradient(to top, rgba(15,16,18,0.95), transparent)",
               }}
             />
             <div
               style={{
-                padding: "0.75rem 1rem",
-                backgroundColor: "rgba(26, 29, 33, 0.95)",
+                position: "absolute",
+                bottom: "0.75rem",
+                left: 0,
+                right: 0,
                 fontFamily: "'JetBrains Mono', monospace",
-                fontSize: "0.7rem",
+                fontSize: "0.68rem",
                 color: "#8a8f96",
                 textAlign: "center",
               }}
             >
-              // philip — the result of a debugged system
+              // the result of a debugged system
             </div>
           </div>
         </div>
