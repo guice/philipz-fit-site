@@ -1,25 +1,32 @@
-import { Button } from "@/components/ui/button";
-import { Loader2 } from "lucide-react";
-import { Streamdown } from 'streamdown';
+/* ==========================================================================
+   HOME PAGE — CPZ Fitness "Spartan Engineer" design
+   Assembles all sections in conversion-optimized order
+   ========================================================================== */
 
-/**
- * All content in this page are only for example, replace with your own feature implementation
- * When building pages, remember your instructions in Frontend Best Practices, Design Guide and Common Pitfalls
- */
+import Navbar from "@/components/Navbar";
+import HeroSection from "@/components/HeroSection";
+import StatsBar from "@/components/StatsBar";
+import ForSection from "@/components/ForSection";
+import AboutSection from "@/components/AboutSection";
+import PipelineSection from "@/components/PipelineSection";
+import CommunitySection from "@/components/CommunitySection";
+import TestimonialsSection from "@/components/TestimonialsSection";
+import BookSection from "@/components/BookSection";
+import Footer from "@/components/Footer";
+
 export default function Home() {
-  // If theme is switchable in App.tsx, we can implement theme toggling like this:
-  // const { theme, toggleTheme } = useTheme();
-
   return (
-    <div className="min-h-screen flex flex-col">
-      <main>
-        {/* Example: lucide-react for icons */}
-        <Loader2 className="animate-spin" />
-        Example Page
-        {/* Example: Streamdown for markdown rendering */}
-        <Streamdown>Any **markdown** content</Streamdown>
-        <Button variant="default">Example Button</Button>
-      </main>
+    <div style={{ backgroundColor: "#0f1012", minHeight: "100vh" }}>
+      <Navbar />
+      <HeroSection />
+      <StatsBar />
+      <ForSection />
+      <AboutSection />
+      <PipelineSection />
+      <TestimonialsSection />
+      <CommunitySection />
+      <BookSection />
+      <Footer />
     </div>
   );
 }
