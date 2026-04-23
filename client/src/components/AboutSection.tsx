@@ -154,7 +154,11 @@ export default function AboutSection() {
                     borderRadius: "4px",
                     border: "1px solid rgba(255,255,255,0.1)",
                     marginBottom: "0.5rem",
+                    transition: "transform 0.3s ease-in-out",
+                    cursor: "pointer",
                   }}
+                  onMouseEnter={(e) => (e.currentTarget.style.transform = "scale(1.05)")}
+                  onMouseLeave={(e) => (e.currentTarget.style.transform = "scale(1)")}
                 />
                 <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.75rem", color: "#8a8f96", textTransform: "uppercase" }}>
                   Before: 134 lbs
@@ -170,7 +174,11 @@ export default function AboutSection() {
                     borderRadius: "4px",
                     border: "1px solid rgba(255,255,255,0.1)",
                     marginBottom: "0.5rem",
+                    transition: "transform 0.3s ease-in-out",
+                    cursor: "pointer",
                   }}
+                  onMouseEnter={(e) => (e.currentTarget.style.transform = "scale(1.05)")}
+                  onMouseLeave={(e) => (e.currentTarget.style.transform = "scale(1)")}
                 />
                 <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.75rem", color: "#ff8200", textTransform: "uppercase", fontWeight: 600 }}>
                   After: 175 lbs
