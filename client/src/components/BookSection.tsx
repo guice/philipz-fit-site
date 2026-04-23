@@ -113,7 +113,7 @@ export default function BookSection() {
               maxWidth: "520px",
             }}
           >
-            15 minutes. No pitch, no pressure. We'll find the bug in your system and map out the fix.
+            Book a free 15-minute debug session. No sales pitch, no pressure. We'll review your current stack, identify the bottlenecks, and map out a roadmap. If we're a fit, great. If not, you'll still walk away with actionable insights.
           </p>
         </div>
 
