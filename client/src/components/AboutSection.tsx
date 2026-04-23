@@ -145,41 +145,63 @@ export default function AboutSection() {
               }}
             >
               <div style={{ textAlign: "center" }}>
-                <img
-                  src={BEFORE_PHOTO}
-                  alt="Before — 134 lbs"
+                {/* Fixed-height container ensures both photos render at identical height regardless of natural dimensions */}
+                <div
                   style={{
-                    width: "100%",
-                    height: "auto",
+                    height: "420px",
+                    overflow: "hidden",
                     borderRadius: "4px",
                     border: "1px solid rgba(255,255,255,0.1)",
                     marginBottom: "0.5rem",
-                    transition: "transform 0.3s ease-in-out",
                     cursor: "pointer",
                   }}
-                  onMouseEnter={(e) => (e.currentTarget.style.transform = "scale(1.05)")}
-                  onMouseLeave={(e) => (e.currentTarget.style.transform = "scale(1)")}
-                />
+                  onMouseEnter={(e) => { const img = e.currentTarget.querySelector('img'); if (img) img.style.transform = 'scale(1.05)'; }}
+                  onMouseLeave={(e) => { const img = e.currentTarget.querySelector('img'); if (img) img.style.transform = 'scale(1)'; }}
+                >
+                  <img
+                    src={BEFORE_PHOTO}
+                    alt="Before — 134 lbs"
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                      objectFit: "cover",
+                      objectPosition: "top center",
+                      display: "block",
+                      transition: "transform 0.3s ease-in-out",
+                    }}
+                  />
+                </div>
                 <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.75rem", color: "#8a8f96", textTransform: "uppercase" }}>
                   Before: 134 lbs
                 </div>
               </div>
               <div style={{ textAlign: "center" }}>
-                <img
-                  src={AFTER_PHOTO}
-                  alt="After — 175 lbs"
+                {/* Fixed-height container ensures both photos render at identical height regardless of natural dimensions */}
+                <div
                   style={{
-                    width: "100%",
-                    height: "auto",
+                    height: "420px",
+                    overflow: "hidden",
                     borderRadius: "4px",
                     border: "1px solid rgba(255,255,255,0.1)",
                     marginBottom: "0.5rem",
-                    transition: "transform 0.3s ease-in-out",
                     cursor: "pointer",
                   }}
-                  onMouseEnter={(e) => (e.currentTarget.style.transform = "scale(1.05)")}
-                  onMouseLeave={(e) => (e.currentTarget.style.transform = "scale(1)")}
-                />
+                  onMouseEnter={(e) => { const img = e.currentTarget.querySelector('img'); if (img) img.style.transform = 'scale(1.05)'; }}
+                  onMouseLeave={(e) => { const img = e.currentTarget.querySelector('img'); if (img) img.style.transform = 'scale(1)'; }}
+                >
+                  <img
+                    src={AFTER_PHOTO}
+                    alt="After — 175 lbs"
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                      objectFit: "cover",
+                      objectPosition: "top center",
+                      display: "block",
+                      transition: "transform 0.3s ease-in-out",
+                    }}
+                  />
+                </div>
                 <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.75rem", color: "#ff8200", textTransform: "uppercase", fontWeight: 600 }}>
                   After: 175 lbs
                 </div>
