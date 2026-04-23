@@ -242,15 +242,14 @@ export default function CommunitySection() {
           </div>
         </div>
 
-        {/* RIGHT: Tall vertical medal photo — stretches full section height */}
+        {/* RIGHT: Tall vertical medal photo — fills grid cell height */}
         {showPhotoCol && (
         <div
           style={{
-            position: "sticky",
-            top: 0,
-            height: "100vh",
+            position: "relative",
             overflow: "hidden",
             alignSelf: "stretch",
+            minHeight: "600px",
           }}
         >
           {/* Photo */}
