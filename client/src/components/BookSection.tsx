@@ -294,7 +294,7 @@ export default function BookSection() {
                       margin: 0,
                     }}
                   >
-                    // 30 min · video call · zero commitment
+                    // 15 min · video call · zero commitment
                   </p>
                 </form>
               )}
