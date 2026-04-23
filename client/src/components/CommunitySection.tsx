@@ -215,7 +215,7 @@ export default function CommunitySection() {
               }}
             >
               <a
-                href="https://www.skool.com/cpz-fitness-4218/"
+                href="https://lnk.philipz.fit/skool-community"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-primary"

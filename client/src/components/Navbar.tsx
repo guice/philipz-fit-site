@@ -50,7 +50,7 @@ export default function Navbar() {
                 textTransform: "uppercase",
               }}
             >
-              FITNESS
+              CPZ FITNESS
             </span>
           </a>
 

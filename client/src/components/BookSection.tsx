@@ -21,7 +21,7 @@ function useVisible(threshold = 0.1) {
 }
 
 const yamlLines = [
-  { key: "duration",    value: "30 min",              color: "#4ade80" },
+  { key: "duration",    value: "15 min",              color: "#4ade80" },
   { key: "cost",        value: "$0",                  color: "#ff8200" },
   { key: "format",      value: "video call",           color: "#4ade80" },
   { key: "outcome",     value: "personalized roadmap", color: "#4ade80" },
@@ -86,7 +86,7 @@ export default function BookSection() {
               maxWidth: "560px",
             }}
           >
-            Book a free 30-minute strategy call. No sales pitch, no pressure. We'll review your current stack, identify the bottlenecks, and map out a roadmap. If we're a fit, great. If not, you'll still walk away with actionable insights.
+            Book a free 15-minute strategy call. No sales pitch, no pressure. We'll review your current stack, identify the bottlenecks, and map out a roadmap. If we're a fit, great. If not, you'll still walk away with actionable insights.
           </p>
         </div>
 

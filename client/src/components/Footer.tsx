@@ -34,23 +34,11 @@ export default function Footer() {
         >
           {/* Logo */}
           <div style={{ display: "flex", alignItems: "center", gap: "0.625rem" }}>
-            <div
-              style={{
-                width: "32px",
-                height: "32px",
-                backgroundColor: "#ff8200",
-                borderRadius: "2px",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                fontFamily: "'Barlow Condensed', sans-serif",
-                fontWeight: 900,
-                fontSize: "0.85rem",
-                color: "#0f1012",
-              }}
-            >
-              CPZ
-            </div>
+            <img
+              src="/manus-storage/cpz-logo_b22c4a6c.svg"
+              alt="CPZ Fitness logo"
+              style={{ height: "32px", width: "auto", display: "block" }}
+            />
             <div>
               <div
                 style={{
@@ -125,17 +113,17 @@ export default function Footer() {
                   fontFamily: "'JetBrains Mono', monospace",
                   fontSize: "0.6rem",
                   fontWeight: 600,
-                  color: "#8a8f96",
+                  color: "#d4d4d8",
                   textDecoration: "none",
                   transition: "all 0.2s",
                 }}
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.borderColor = "#ff8200";
-                  e.currentTarget.style.color = "#ff8200";
+                  e.currentTarget.style.borderColor = "#d4d4d8";
+                  e.currentTarget.style.color = "#f0ede8";
                 }}
                 onMouseLeave={(e) => {
                   e.currentTarget.style.borderColor = "rgba(255,255,255,0.1)";
-                  e.currentTarget.style.color = "#8a8f96";
+                  e.currentTarget.style.color = "#d4d4d8";
                 }}
               >
                 {s.icon}
