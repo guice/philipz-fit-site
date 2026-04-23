@@ -301,13 +301,16 @@ export default function AboutSection() {
               }}
             >
               <p style={{ marginBottom: "1rem" }}>
-                I started at 134 pounds — rejected by the Air Force for being too underweight and frail. They thought my bones would snap in boot camp. The walking broomstick in an oversized shirt. I know what it feels like to be the weakest person in every room.
+                I started at 134 pounds. The Air Force rejected me — body flagged as too fragile to serve. I was the walking broomstick in an oversized shirt. I know exactly what it feels like to be the weakest person in every room.
               </p>
               <p style={{ marginBottom: "1rem" }}>
-                I was so ashamed of my frail body I'd avoid the camera. I looked down my family tree — diabetes, chronic underweight — and decided I was done hiding. I wanted to <em style={{ color: "#f0ede8" }}>be</em> the avatar. So I built myself from the ground up.
+                I became a software engineer and got good at it. But outside of work, I retreated online. No social circle. No real-world XP. Just isolation — and a body still running the same broken build from day one.
+              </p>
+              <p style={{ marginBottom: "1rem" }}>
+                A trainer handed me my first real spec. I followed it, saw results, then ventured solo — ten years of trial, error, and relentless debugging until I understood how the system actually worked. I crossed Spartan and Tough Mudder finish lines. I built the body I was told I couldn't have.
               </p>
               <p>
-                Now I help fellow engineers who are stuck in the same loop. You don't need another generic fitness plan. You need someone who speaks your language and understands your constraints.
+                Now I help fellow engineers stuck in the same loop. You don't need another generic plan. You need someone who speaks your language, understands your constraints, and has already debugged the exact system you're trying to fix.
               </p>
             </div>
 
