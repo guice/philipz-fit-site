@@ -83,61 +83,80 @@ export default function AboutSection() {
             }}
           >
             {/* Photo with faded gym background for depth */}
+            {/* Photo wrapper — no hard border, soft edge fade into background */}
             <div
               style={{
                 position: "relative",
-                borderRadius: "4px",
-                overflow: "hidden",
                 marginBottom: "1.5rem",
                 maxWidth: "460px",
-                border: "1px solid rgba(255,255,255,0.06)",
                 aspectRatio: "3/4",
               }}
             >
-              {/* Gym background layer */}
+              {/* Inner clipped container */}
               <div
                 style={{
                   position: "absolute",
                   inset: 0,
-                  backgroundImage: `url(${GYM_BG})`,
-                  backgroundSize: "cover",
-                  backgroundPosition: "center",
-                  opacity: 0.22,
-                  filter: "blur(2px) saturate(0.6)",
+                  borderRadius: "6px",
+                  overflow: "hidden",
                 }}
-              />
-              {/* Dark vignette over gym bg */}
-              <div
-                style={{
-                  position: "absolute",
-                  inset: 0,
-                  background: "radial-gradient(ellipse at center, rgba(15,16,18,0.1) 0%, rgba(15,16,18,0.55) 100%)",
-                }}
-              />
-              {/* Philip's portrait */}
-              <img
-                src={PHILIP_PHOTO}
-                alt="Philip — CPZ Fitness Coach"
-                style={{
-                  position: "relative",
-                  zIndex: 1,
-                  width: "100%",
-                  height: "100%",
-                  objectFit: "cover",
-                  objectPosition: "top center",
-                  display: "block",
-                }}
-              />
-              {/* Orange bottom accent */}
+              >
+                {/* Gym background layer */}
+                <div
+                  style={{
+                    position: "absolute",
+                    inset: 0,
+                    backgroundImage: `url(${GYM_BG})`,
+                    backgroundSize: "cover",
+                    backgroundPosition: "center",
+                    opacity: 0.22,
+                    filter: "blur(2px) saturate(0.6)",
+                  }}
+                />
+                {/* Dark vignette over gym bg */}
+                <div
+                  style={{
+                    position: "absolute",
+                    inset: 0,
+                    background: "radial-gradient(ellipse at center, rgba(15,16,18,0.1) 0%, rgba(15,16,18,0.55) 100%)",
+                  }}
+                />
+                {/* Philip's portrait */}
+                <img
+                  src={PHILIP_PHOTO}
+                  alt="Philip — CPZ Fitness Coach"
+                  style={{
+                    position: "relative",
+                    zIndex: 1,
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "cover",
+                    objectPosition: "top center",
+                    display: "block",
+                  }}
+                />
+              </div>
+
+              {/* Soft edge fade overlays — dissolve into section background */}
+              {/* Top fade */}
+              <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: "80px", background: "linear-gradient(to bottom, #22262b, transparent)", zIndex: 2, pointerEvents: "none" }} />
+              {/* Bottom fade */}
+              <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "100px", background: "linear-gradient(to top, #22262b, transparent)", zIndex: 2, pointerEvents: "none" }} />
+              {/* Left fade */}
+              <div style={{ position: "absolute", top: 0, left: 0, bottom: 0, width: "60px", background: "linear-gradient(to right, #22262b, transparent)", zIndex: 2, pointerEvents: "none" }} />
+              {/* Right fade */}
+              <div style={{ position: "absolute", top: 0, right: 0, bottom: 0, width: "60px", background: "linear-gradient(to left, #22262b, transparent)", zIndex: 2, pointerEvents: "none" }} />
+
+              {/* Orange bottom accent — above fades */}
               <div
                 style={{
                   position: "absolute",
                   bottom: 0,
-                  left: 0,
-                  right: 0,
-                  height: "3px",
-                  background: "linear-gradient(to right, #ff8200, transparent)",
-                  zIndex: 2,
+                  left: "15%",
+                  right: "15%",
+                  height: "2px",
+                  background: "linear-gradient(to right, transparent, #ff8200, transparent)",
+                  zIndex: 3,
                 }}
               />
             </div>

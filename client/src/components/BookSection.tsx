@@ -1,6 +1,7 @@
 /* ==========================================================================
    BOOK SECTION — CPZ Fitness "Spartan Engineer" design
-   Free strategy call — placeholder form + YAML spec card + medal photo
+   Free strategy call — 2-col: placeholder form | YAML spec + what we'll cover
+   Photo removed per feedback — section was too crowded with 3 cols.
    ========================================================================== */
 
 import { useEffect, useRef, useState } from "react";
@@ -18,9 +19,6 @@ function useVisible(threshold = 0.1) {
   }, [threshold]);
   return { ref, visible };
 }
-
-// Philip's Spartan Race medal photo
-const MEDAL_PHOTO = "https://res.cloudinary.com/dzjucinkn/image/upload/q_auto/f_auto/v1776803159/philip-finish_cqkte2.jpg";
 
 const yamlLines = [
   { key: "duration",    value: "30 min",              color: "#4ade80" },
@@ -92,14 +90,14 @@ export default function BookSection() {
           </p>
         </div>
 
-        {/* Three-column layout: form | yaml spec | photo */}
+        {/* Two-column layout: form | spec + what we'll cover */}
         <div
           style={{
             display: "grid",
             gap: "1.5rem",
             alignItems: "start",
           }}
-          className="book-grid"
+          className="book-grid-2col"
         >
           {/* ── Col 1: Booking form ── */}
           <div
@@ -129,12 +127,7 @@ export default function BookSection() {
 
               {submitted ? (
                 /* Success state */
-                <div
-                  style={{
-                    padding: "2.5rem 2rem",
-                    textAlign: "center",
-                  }}
-                >
+                <div style={{ padding: "3rem 2rem", textAlign: "center" }}>
                   <div
                     style={{
                       fontFamily: "'JetBrains Mono', monospace",
@@ -169,7 +162,10 @@ export default function BookSection() {
                   </p>
                 </div>
               ) : (
-                <form onSubmit={handleSubmit} style={{ padding: "1.75rem 1.5rem", display: "flex", flexDirection: "column", gap: "1rem" }}>
+                <form
+                  onSubmit={handleSubmit}
+                  style={{ padding: "1.75rem 1.5rem", display: "flex", flexDirection: "column", gap: "1.1rem" }}
+                >
                   {/* Name */}
                   <div>
                     <label
@@ -194,7 +190,7 @@ export default function BookSection() {
                         backgroundColor: "#0f1012",
                         border: "1px solid rgba(255,255,255,0.1)",
                         borderRadius: "3px",
-                        padding: "0.625rem 0.875rem",
+                        padding: "0.7rem 0.875rem",
                         fontFamily: "'Space Grotesk', sans-serif",
                         fontSize: "0.9rem",
                         color: "#f0ede8",
@@ -231,7 +227,7 @@ export default function BookSection() {
                         backgroundColor: "#0f1012",
                         border: "1px solid rgba(255,255,255,0.1)",
                         borderRadius: "3px",
-                        padding: "0.625rem 0.875rem",
+                        padding: "0.7rem 0.875rem",
                         fontFamily: "'Space Grotesk', sans-serif",
                         fontSize: "0.9rem",
                         color: "#f0ede8",
@@ -258,7 +254,7 @@ export default function BookSection() {
                       message: <span style={{ color: "#8a8f96" }}>string | null</span>
                     </label>
                     <textarea
-                      rows={4}
+                      rows={5}
                       placeholder="What's your biggest bottleneck right now? (optional)"
                       value={formData.message}
                       onChange={(e) => setFormData({ ...formData, message: e.target.value })}
@@ -267,7 +263,7 @@ export default function BookSection() {
                         backgroundColor: "#0f1012",
                         border: "1px solid rgba(255,255,255,0.1)",
                         borderRadius: "3px",
-                        padding: "0.625rem 0.875rem",
+                        padding: "0.7rem 0.875rem",
                         fontFamily: "'Space Grotesk', sans-serif",
                         fontSize: "0.9rem",
                         color: "#f0ede8",
@@ -326,14 +322,14 @@ export default function BookSection() {
                   $ cat consultation.yml
                 </span>
               </div>
-              <div style={{ padding: "1rem" }}>
+              <div style={{ padding: "1.1rem 1.25rem" }}>
                 {yamlLines.map((line, i) => (
                   <div
                     key={i}
                     style={{
                       fontFamily: "'JetBrains Mono', monospace",
-                      fontSize: "0.78rem",
-                      marginBottom: "0.375rem",
+                      fontSize: "0.82rem",
+                      marginBottom: "0.45rem",
                       display: "flex",
                       gap: "0.5rem",
                     }}
@@ -351,17 +347,17 @@ export default function BookSection() {
                 backgroundColor: "#22262b",
                 border: "1px solid rgba(255, 130, 0, 0.12)",
                 borderRadius: "4px",
-                padding: "1.5rem",
+                padding: "1.75rem",
               }}
             >
               <h3
                 style={{
                   fontFamily: "'Barlow Condensed', sans-serif",
                   fontWeight: 800,
-                  fontSize: "1.1rem",
+                  fontSize: "1.15rem",
                   textTransform: "uppercase",
                   color: "#f0ede8",
-                  marginBottom: "1rem",
+                  marginBottom: "1.25rem",
                   letterSpacing: "0.05em",
                 }}
               >
@@ -377,9 +373,9 @@ export default function BookSection() {
                   key={i}
                   style={{
                     display: "flex",
-                    gap: "0.875rem",
-                    marginBottom: i < 3 ? "0.875rem" : 0,
-                    paddingBottom: i < 3 ? "0.875rem" : 0,
+                    gap: "1rem",
+                    marginBottom: i < 3 ? "1rem" : 0,
+                    paddingBottom: i < 3 ? "1rem" : 0,
                     borderBottom: i < 3 ? "1px solid rgba(255,255,255,0.05)" : "none",
                   }}
                 >
@@ -387,10 +383,11 @@ export default function BookSection() {
                     style={{
                       fontFamily: "'Barlow Condensed', sans-serif",
                       fontWeight: 900,
-                      fontSize: "1.1rem",
+                      fontSize: "1.2rem",
                       color: "#ff8200",
                       flexShrink: 0,
                       lineHeight: 1.3,
+                      minWidth: "2rem",
                     }}
                   >
                     {item.step}
@@ -398,9 +395,9 @@ export default function BookSection() {
                   <p
                     style={{
                       fontFamily: "'Space Grotesk', sans-serif",
-                      fontSize: "0.85rem",
+                      fontSize: "0.9rem",
                       color: "#b0aca6",
-                      lineHeight: 1.6,
+                      lineHeight: 1.65,
                       margin: 0,
                     }}
                   >
@@ -408,67 +405,6 @@ export default function BookSection() {
                   </p>
                 </div>
               ))}
-            </div>
-          </div>
-
-          {/* ── Col 3: Medal photo — full vertical profile ── */}
-          <div
-            style={{
-              opacity: visible ? 1 : 0,
-              transform: visible ? "translateX(0)" : "translateX(24px)",
-              transition: "opacity 0.7s ease 0.3s, transform 0.7s ease 0.3s",
-              alignSelf: "stretch",
-              display: "flex",
-              flexDirection: "column",
-            }}
-          >
-            <div
-              style={{
-                borderRadius: "4px",
-                overflow: "hidden",
-                border: "1px solid rgba(255, 130, 0, 0.15)",
-                flex: 1,
-                minHeight: "500px",
-                position: "relative",
-              }}
-            >
-              <img
-                src={MEDAL_PHOTO}
-                alt="Philip at the Spartan Race finish line with medal"
-                style={{
-                  width: "100%",
-                  height: "100%",
-                  objectFit: "cover",
-                  objectPosition: "left center",
-                  display: "block",
-                  position: "absolute",
-                  inset: 0,
-                  filter: "brightness(0.8) contrast(1.05)",
-                }}
-              />
-              {/* Gradient overlay at bottom */}
-              <div
-                style={{
-                  position: "absolute",
-                  bottom: 0,
-                  left: 0,
-                  right: 0,
-                  height: "80px",
-                  background: "linear-gradient(to top, rgba(26,29,33,0.95), transparent)",
-                }}
-              />
-              <div
-                style={{
-                  position: "absolute",
-                  bottom: "0.875rem",
-                  left: "1rem",
-                  fontFamily: "'JetBrains Mono', monospace",
-                  fontSize: "0.68rem",
-                  color: "#8a8f96",
-                }}
-              >
-                // 134lb broomstick → spartan race finisher
-              </div>
             </div>
           </div>
         </div>

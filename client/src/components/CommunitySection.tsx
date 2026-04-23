@@ -186,61 +186,64 @@ export default function CommunitySection() {
           ))}
         </div>
 
-        {/* CTA */}
+        {/* CTA + photo — side by side */}
         <div
           style={{
-            textAlign: "center",
+            display: "grid",
+            gridTemplateColumns: "1fr",
+            gap: "2.5rem",
+            alignItems: "center",
             opacity: visible ? 1 : 0,
             transition: "opacity 0.6s ease 0.5s",
           }}
+          className="community-cta-grid"
         >
-          <a
-            href="https://www.skool.com/cpz-fitness-4218/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn-primary"
-            style={{ fontSize: "1.1rem", padding: "1rem 2.5rem" }}
-          >
-            Join the Community — Free
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-              <path d="M5 12h14M12 5l7 7-7 7" />
-            </svg>
-          </a>
-          <p
-            style={{
-              fontFamily: "'JetBrains Mono', monospace",
-              fontSize: "0.72rem",
-              color: "#8a8f96",
-              marginTop: "0.875rem",
-            }}
-          >
-            No credit card. No bro-science. Just systems that work.
-          </p>
+          {/* Left: CTA text + button */}
+          <div style={{ textAlign: "left" }}>
+            <a
+              href="https://www.skool.com/cpz-fitness-4218/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-primary"
+              style={{ fontSize: "1.1rem", padding: "1rem 2.5rem" }}
+            >
+              Join the Community — Free
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                <path d="M5 12h14M12 5l7 7-7 7" />
+              </svg>
+            </a>
+            <p
+              style={{
+                fontFamily: "'JetBrains Mono', monospace",
+                fontSize: "0.72rem",
+                color: "#8a8f96",
+                marginTop: "0.875rem",
+              }}
+            >
+              No credit card. No bro-science. Just systems that work.
+            </p>
+          </div>
 
-          {/* Philip medal photo — positioned right to show full vertical profile */}
+          {/* Right: Spartan Race finish line photo */}
           <div
             style={{
-              marginTop: "3rem",
-              maxWidth: "380px",
-              margin: "3rem auto 0",
               borderRadius: "4px",
               overflow: "hidden",
               border: "1px solid rgba(255, 130, 0, 0.2)",
-              opacity: visible ? 1 : 0,
-              transition: "opacity 0.6s ease 0.6s",
               position: "relative",
+              maxWidth: "480px",
             }}
           >
             <img
               src={PHILIP_MEDAL}
-              alt="Philip at Spartan Race finish with medal"
+              alt="Philip at Spartan Race finish line"
               style={{
                 width: "100%",
-                height: "360px",
+                height: "340px",
                 objectFit: "cover",
-                objectPosition: "right center",
+                objectPosition: "right top",
                 display: "block",
-                filter: "brightness(0.8) contrast(1.1)",
+                filter: "brightness(0.82) contrast(1.08)",
               }}
             />
             {/* Bottom gradient */}
@@ -258,15 +261,13 @@ export default function CommunitySection() {
               style={{
                 position: "absolute",
                 bottom: "0.75rem",
-                left: 0,
-                right: 0,
+                left: "1rem",
                 fontFamily: "'JetBrains Mono', monospace",
                 fontSize: "0.68rem",
                 color: "#8a8f96",
-                textAlign: "center",
               }}
             >
-              // the result of a debugged system
+              // spartan race finish line — the result of a debugged system
             </div>
           </div>
         </div>
