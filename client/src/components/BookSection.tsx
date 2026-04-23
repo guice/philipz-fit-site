@@ -6,6 +6,20 @@
 
 import { useEffect, useRef, useState } from "react";
 
+// GHL booking widget script — injected once on mount
+function useGHLScript() {
+  useEffect(() => {
+    const existing = document.getElementById("ghl-form-embed-script");
+    if (existing) return;
+    const script = document.createElement("script");
+    script.src = "https://link.msgsndr.com/js/form_embed.js";
+    script.type = "text/javascript";
+    script.id = "ghl-form-embed-script";
+    document.body.appendChild(script);
+    return () => { /* leave script in DOM so it doesn't reload on re-render */ };
+  }, []);
+}
+
 function useVisible(threshold = 0.1) {
   const ref = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
@@ -32,14 +46,7 @@ const yamlLines = [
 
 export default function BookSection() {
   const { ref, visible } = useVisible();
-  const [formData, setFormData] = useState({ name: "", email: "", message: "" });
-  const [submitted, setSubmitted] = useState(false);
-
-  function handleSubmit(e: React.FormEvent) {
-    e.preventDefault();
-    // Placeholder — wire up to your preferred form backend (Formspree, ConvertKit, etc.)
-    setSubmitted(true);
-  }
+  useGHLScript();
 
   return (
     <section
@@ -99,7 +106,7 @@ export default function BookSection() {
           }}
           className="book-grid-2col"
         >
-          {/* ── Col 1: Booking form ── */}
+          {/* ── Col 1: GHL Booking iframe ── */}
           <div
             style={{
               opacity: visible ? 1 : 0,
@@ -125,179 +132,15 @@ export default function BookSection() {
                 </span>
               </div>
 
-              {submitted ? (
-                /* Success state */
-                <div style={{ padding: "3rem 2rem", textAlign: "center" }}>
-                  <div
-                    style={{
-                      fontFamily: "'JetBrains Mono', monospace",
-                      fontSize: "0.75rem",
-                      color: "#4ade80",
-                      marginBottom: "1rem",
-                    }}
-                  >
-                    ✓ deployment successful
-                  </div>
-                  <div
-                    style={{
-                      fontFamily: "'Barlow Condensed', sans-serif",
-                      fontWeight: 800,
-                      fontSize: "1.5rem",
-                      textTransform: "uppercase",
-                      color: "#f0ede8",
-                      marginBottom: "0.5rem",
-                    }}
-                  >
-                    Request received.
-                  </div>
-                  <p
-                    style={{
-                      fontFamily: "'Space Grotesk', sans-serif",
-                      fontSize: "0.875rem",
-                      color: "#8a8f96",
-                      lineHeight: 1.6,
-                    }}
-                  >
-                    I'll be in touch within 24 hours to schedule your free call.
-                  </p>
-                </div>
-              ) : (
-                <form
-                  onSubmit={handleSubmit}
-                  style={{ padding: "1.75rem 1.5rem", display: "flex", flexDirection: "column", gap: "1.1rem" }}
-                >
-                  {/* Name */}
-                  <div>
-                    <label
-                      style={{
-                        display: "block",
-                        fontFamily: "'JetBrains Mono', monospace",
-                        fontSize: "0.68rem",
-                        color: "#8a8f96",
-                        marginBottom: "0.375rem",
-                      }}
-                    >
-                      name: <span style={{ color: "#ff8200" }}>string</span>
-                    </label>
-                    <input
-                      type="text"
-                      required
-                      placeholder="Your name"
-                      value={formData.name}
-                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      style={{
-                        width: "100%",
-                        backgroundColor: "#0f1012",
-                        border: "1px solid rgba(255,255,255,0.1)",
-                        borderRadius: "3px",
-                        padding: "0.7rem 0.875rem",
-                        fontFamily: "'Space Grotesk', sans-serif",
-                        fontSize: "0.9rem",
-                        color: "#f0ede8",
-                        outline: "none",
-                        boxSizing: "border-box",
-                        transition: "border-color 0.2s ease",
-                      }}
-                      onFocus={(e) => (e.target.style.borderColor = "rgba(255,130,0,0.5)")}
-                      onBlur={(e) => (e.target.style.borderColor = "rgba(255,255,255,0.1)")}
-                    />
-                  </div>
-
-                  {/* Email */}
-                  <div>
-                    <label
-                      style={{
-                        display: "block",
-                        fontFamily: "'JetBrains Mono', monospace",
-                        fontSize: "0.68rem",
-                        color: "#8a8f96",
-                        marginBottom: "0.375rem",
-                      }}
-                    >
-                      email: <span style={{ color: "#ff8200" }}>string</span>
-                    </label>
-                    <input
-                      type="email"
-                      required
-                      placeholder="you@company.dev"
-                      value={formData.email}
-                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      style={{
-                        width: "100%",
-                        backgroundColor: "#0f1012",
-                        border: "1px solid rgba(255,255,255,0.1)",
-                        borderRadius: "3px",
-                        padding: "0.7rem 0.875rem",
-                        fontFamily: "'Space Grotesk', sans-serif",
-                        fontSize: "0.9rem",
-                        color: "#f0ede8",
-                        outline: "none",
-                        boxSizing: "border-box",
-                        transition: "border-color 0.2s ease",
-                      }}
-                      onFocus={(e) => (e.target.style.borderColor = "rgba(255,130,0,0.5)")}
-                      onBlur={(e) => (e.target.style.borderColor = "rgba(255,255,255,0.1)")}
-                    />
-                  </div>
-
-                  {/* Message */}
-                  <div>
-                    <label
-                      style={{
-                        display: "block",
-                        fontFamily: "'JetBrains Mono', monospace",
-                        fontSize: "0.68rem",
-                        color: "#8a8f96",
-                        marginBottom: "0.375rem",
-                      }}
-                    >
-                      message: <span style={{ color: "#8a8f96" }}>string | null</span>
-                    </label>
-                    <textarea
-                      rows={5}
-                      placeholder="What's your biggest bottleneck right now? (optional)"
-                      value={formData.message}
-                      onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                      style={{
-                        width: "100%",
-                        backgroundColor: "#0f1012",
-                        border: "1px solid rgba(255,255,255,0.1)",
-                        borderRadius: "3px",
-                        padding: "0.7rem 0.875rem",
-                        fontFamily: "'Space Grotesk', sans-serif",
-                        fontSize: "0.9rem",
-                        color: "#f0ede8",
-                        outline: "none",
-                        resize: "vertical",
-                        boxSizing: "border-box",
-                        transition: "border-color 0.2s ease",
-                      }}
-                      onFocus={(e) => (e.target.style.borderColor = "rgba(255,130,0,0.5)")}
-                      onBlur={(e) => (e.target.style.borderColor = "rgba(255,255,255,0.1)")}
-                    />
-                  </div>
-
-                  <button
-                    type="submit"
-                    className="btn-primary"
-                    style={{ width: "100%", justifyContent: "center", marginTop: "0.25rem", fontSize: "0.95rem" }}
-                  >
-                    Deploy Consultation Request →
-                  </button>
-
-                  <p
-                    style={{
-                      fontFamily: "'JetBrains Mono', monospace",
-                      fontSize: "0.65rem",
-                      color: "#6b7280",
-                      textAlign: "center",
-                      margin: 0,
-                    }}
-                  >
-                    // 15 min · video call · zero commitment
-                  </p>
-                </form>
-              )}
+              {/* GHL Booking Widget */}
+              <div style={{ padding: "0" }}>
+                <iframe
+                  src="https://api.leadconnectorhq.com/widget/booking/Iv6cZv9w9cMG3ZAHzmHy"
+                  style={{ width: "100%", border: "none", overflow: "hidden", display: "block", minHeight: "700px" }}
+                  scrolling="no"
+                  id="Iv6cZv9w9cMG3ZAHzmHy_1776978768512"
+                />
+              </div>
             </div>
           </div>
 
