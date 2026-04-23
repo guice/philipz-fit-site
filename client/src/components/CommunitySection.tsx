@@ -1,16 +1,15 @@
 /* ==========================================================================
    COMMUNITY SECTION — CPZ Fitness "Spartan Engineer" design
-   Skool community CTA — "Stop debugging alone."
-   Dark grid background with orange accents
+   Layout: two-column — content (header + cards + CTA) left, tall vertical photo right
+   The medal photo is vertical so it runs full height of the section on the right
    ========================================================================== */
 
 import { useEffect, useRef, useState } from "react";
 
-const COMMUNITY_BG = "https://res.cloudinary.com/dzjucinkn/image/upload/q_auto/f_auto/v1776806680/mohamed-fareed-rbSNsoXk-3A-unsplash_t8ba3h.jpg";
-// Using the Spartan Race medal photo — shows Philip's full vertical profile
+// Using the Spartan Race medal photo — vertical portrait orientation
 const PHILIP_MEDAL = "https://res.cloudinary.com/dzjucinkn/image/upload/q_auto/f_auto/v1776803158/philip-medal_ippfik.jpg";
 
-function useVisible(threshold = 0.15) {
+function useVisible(threshold = 0.1) {
   const ref = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
   useEffect(() => {
@@ -26,27 +25,23 @@ function useVisible(threshold = 0.15) {
 
 const features = [
   {
-    icon: "⌨️",
-    command: ")_",
+    command: "01",
     title: "Weekly Live Q&A",
     description: "Direct access. Real answers. No gatekeeping. Ask anything — nutrition, training, mindset, gear.",
   },
   {
-    icon: "🏋️",
-    command: "{ }",
+    command: "02",
     title: "Workout Library",
     description: "Proven programs for desk-bound bodies. No bro-science, no guesswork — just systems that work.",
   },
   {
-    icon: "📊",
-    command: "◈",
-    title: "Accountability",
-    description: "Daily standups — but for your health. A community of engineers who get it and keep each other on track.",
+    command: "03",
+    title: "Accountability Standups",
+    description: "Daily check-ins — but for your health. Engineers who get it and keep each other on track.",
   },
   {
-    icon: "📚",
-    command: "//",
-    title: "Free Courses",
+    command: "04",
+    title: "3 Free Courses",
     description: "Geek to Greek Starter Pack, Training OS, and Deployment Blueprint — all free inside the community.",
   },
 ];
@@ -60,216 +55,271 @@ export default function CommunitySection() {
       ref={ref}
       style={{
         position: "relative",
-        padding: "7rem 0",
         backgroundColor: "#0f1012",
         overflow: "hidden",
       }}
     >
-      {/* Background */}
+      {/* Two-column grid: content left, photo right */}
       <div
         style={{
-          position: "absolute",
-          inset: 0,
-          backgroundImage: `url(${COMMUNITY_BG})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          opacity: 0.12,
+          display: "grid",
+          gridTemplateColumns: "1fr",
+          minHeight: "700px",
         }}
-      />
-      {/* Gradient overlay */}
-      <div
-        style={{
-          position: "absolute",
-          inset: 0,
-          background: "linear-gradient(to bottom, rgba(15,16,18,0.8) 0%, rgba(15,16,18,0.6) 50%, rgba(15,16,18,0.9) 100%)",
-        }}
-      />
-
-      <div className="container" style={{ position: "relative", zIndex: 1 }}>
-        {/* Header */}
+        className="community-layout"
+      >
+        {/* LEFT: All content */}
         <div
           style={{
-            textAlign: "center",
-            marginBottom: "3.5rem",
-            opacity: visible ? 1 : 0,
-            transform: visible ? "translateY(0)" : "translateY(24px)",
-            transition: "opacity 0.6s ease, transform 0.6s ease",
+            padding: "6rem 0",
+            position: "relative",
+            zIndex: 1,
           }}
         >
-          <div className="section-label" style={{ justifyContent: "center" }}>
-            // community.join()
-          </div>
-          <h2
-            style={{
-              fontFamily: "'Barlow Condensed', sans-serif",
-              fontWeight: 900,
-              fontSize: "clamp(2.5rem, 5vw, 4.5rem)",
-              textTransform: "uppercase",
-              color: "#f0ede8",
-              lineHeight: 1,
-              marginBottom: "1rem",
-            }}
-          >
-            Stop debugging
-            <br />
-            <span style={{ color: "#ff8200" }}>alone.</span>
-          </h2>
-          <p
-            style={{
-              fontFamily: "'Space Grotesk', sans-serif",
-              fontSize: "1.05rem",
-              color: "#8a8f96",
-              maxWidth: "540px",
-              margin: "0 auto",
-              lineHeight: 1.7,
-            }}
-          >
-            Join a free community of engineers, developers, and tech professionals who are building better bodies — together. Think of it as your fitness pull-request review group.
-          </p>
-        </div>
+          <div className="container" style={{ maxWidth: "680px", marginLeft: 0, paddingLeft: "2rem", paddingRight: "2rem" }}>
 
-        {/* Feature cards */}
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))",
-            gap: "1.25rem",
-            marginBottom: "3rem",
-          }}
-        >
-          {features.map((f, i) => (
+            {/* Section label */}
             <div
-              key={i}
+              className="section-label"
               style={{
-                backgroundColor: "rgba(26, 29, 33, 0.9)",
-                border: "1px solid rgba(255, 130, 0, 0.12)",
-                borderRadius: "4px",
-                padding: "1.75rem",
                 opacity: visible ? 1 : 0,
-                transform: visible ? "translateY(0)" : "translateY(24px)",
-                transition: `opacity 0.6s ease ${i * 0.1}s, transform 0.6s ease ${i * 0.1}s`,
+                transition: "opacity 0.5s ease",
               }}
             >
-              <div
-                style={{
-                  fontFamily: "'JetBrains Mono', monospace",
-                  fontSize: "1.25rem",
-                  color: "#ff8200",
-                  marginBottom: "0.875rem",
-                }}
-              >
-                {f.command}
-              </div>
-              <h3
-                style={{
-                  fontFamily: "'Space Grotesk', sans-serif",
-                  fontWeight: 700,
-                  fontSize: "1rem",
-                  color: "#f0ede8",
-                  marginBottom: "0.5rem",
-                }}
-              >
-                {f.title}
-              </h3>
-              <p
-                style={{
-                  fontFamily: "'Space Grotesk', sans-serif",
-                  fontSize: "0.875rem",
-                  color: "#8a8f96",
-                  lineHeight: 1.65,
-                  margin: 0,
-                }}
-              >
-                {f.description}
-              </p>
+              // community.join()
             </div>
-          ))}
-        </div>
 
-        {/* CTA + photo — side by side */}
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "1fr",
-            gap: "2.5rem",
-            alignItems: "center",
-            opacity: visible ? 1 : 0,
-            transition: "opacity 0.6s ease 0.5s",
-          }}
-          className="community-cta-grid"
-        >
-          {/* Left: CTA text + button */}
-          <div style={{ textAlign: "left" }}>
-            <a
-              href="https://www.skool.com/cpz-fitness-4218/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-primary"
-              style={{ fontSize: "1.1rem", padding: "1rem 2.5rem" }}
+            {/* Headline */}
+            <h2
+              style={{
+                fontFamily: "'Barlow Condensed', sans-serif",
+                fontWeight: 900,
+                fontSize: "clamp(2.8rem, 5vw, 4.5rem)",
+                textTransform: "uppercase",
+                color: "#f0ede8",
+                lineHeight: 1,
+                marginBottom: "1rem",
+                marginTop: "0.75rem",
+                opacity: visible ? 1 : 0,
+                transform: visible ? "translateY(0)" : "translateY(20px)",
+                transition: "opacity 0.6s ease 0.1s, transform 0.6s ease 0.1s",
+              }}
             >
-              Join the Community — Free
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                <path d="M5 12h14M12 5l7 7-7 7" />
-              </svg>
-            </a>
+              Stop debugging
+              <br />
+              <span style={{ color: "#ff8200" }}>alone.</span>
+            </h2>
+
             <p
               style={{
-                fontFamily: "'JetBrains Mono', monospace",
-                fontSize: "0.72rem",
+                fontFamily: "'Space Grotesk', sans-serif",
+                fontSize: "1rem",
                 color: "#8a8f96",
-                marginTop: "0.875rem",
+                maxWidth: "520px",
+                lineHeight: 1.75,
+                marginBottom: "2.5rem",
+                opacity: visible ? 1 : 0,
+                transform: visible ? "translateY(0)" : "translateY(20px)",
+                transition: "opacity 0.6s ease 0.15s, transform 0.6s ease 0.15s",
               }}
             >
-              No credit card. No bro-science. Just systems that work.
+              Join a free community of engineers, developers, and tech professionals building better bodies — together. Think of it as your fitness pull-request review group.
             </p>
-          </div>
 
-          {/* Right: Spartan Race finish line photo */}
+            {/* Feature list — horizontal rule style */}
+            <div
+              style={{
+                marginBottom: "2.5rem",
+                opacity: visible ? 1 : 0,
+                transition: "opacity 0.6s ease 0.2s",
+              }}
+            >
+              {features.map((f, i) => (
+                <div
+                  key={i}
+                  style={{
+                    display: "grid",
+                    gridTemplateColumns: "auto 1fr",
+                    gap: "1.25rem",
+                    alignItems: "start",
+                    padding: "1.1rem 0",
+                    borderBottom: "1px solid rgba(255,255,255,0.06)",
+                    opacity: visible ? 1 : 0,
+                    transform: visible ? "translateX(0)" : "translateX(-16px)",
+                    transition: `opacity 0.5s ease ${0.25 + i * 0.08}s, transform 0.5s ease ${0.25 + i * 0.08}s`,
+                  }}
+                >
+                  {/* Number */}
+                  <div
+                    style={{
+                      fontFamily: "'JetBrains Mono', monospace",
+                      fontSize: "0.7rem",
+                      color: "#ff8200",
+                      fontWeight: 500,
+                      paddingTop: "2px",
+                      minWidth: "28px",
+                    }}
+                  >
+                    {f.command}
+                  </div>
+                  {/* Content */}
+                  <div>
+                    <div
+                      style={{
+                        fontFamily: "'Space Grotesk', sans-serif",
+                        fontWeight: 700,
+                        fontSize: "0.95rem",
+                        color: "#f0ede8",
+                        marginBottom: "0.25rem",
+                      }}
+                    >
+                      {f.title}
+                    </div>
+                    <div
+                      style={{
+                        fontFamily: "'Space Grotesk', sans-serif",
+                        fontSize: "0.85rem",
+                        color: "#8a8f96",
+                        lineHeight: 1.6,
+                      }}
+                    >
+                      {f.description}
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* CTA */}
+            <div
+              style={{
+                opacity: visible ? 1 : 0,
+                transform: visible ? "translateY(0)" : "translateY(16px)",
+                transition: "opacity 0.6s ease 0.6s, transform 0.6s ease 0.6s",
+              }}
+            >
+              <a
+                href="https://www.skool.com/cpz-fitness-4218/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-primary"
+                style={{ fontSize: "1.05rem", padding: "0.9rem 2.25rem", display: "inline-flex" }}
+              >
+                Join the Community — Free
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" style={{ marginLeft: "0.5rem" }}>
+                  <path d="M5 12h14M12 5l7 7-7 7" />
+                </svg>
+              </a>
+              <p
+                style={{
+                  fontFamily: "'JetBrains Mono', monospace",
+                  fontSize: "0.7rem",
+                  color: "#8a8f96",
+                  marginTop: "0.75rem",
+                }}
+              >
+                // no credit card · no bro-science · just systems that work
+              </p>
+            </div>
+
+          </div>
+        </div>
+
+        {/* RIGHT: Tall vertical medal photo */}
+        <div
+          className="community-photo-col"
+          style={{
+            position: "relative",
+            minHeight: "600px",
+            overflow: "hidden",
+          }}
+        >
+          {/* Photo */}
+          <img
+            src={PHILIP_MEDAL}
+            alt="Philip holding his Spartan Race medal"
+            style={{
+              position: "absolute",
+              inset: 0,
+              width: "100%",
+              height: "100%",
+              objectFit: "cover",
+              objectPosition: "center top",
+              display: "block",
+              filter: "brightness(0.78) contrast(1.1) saturate(0.9)",
+            }}
+          />
+
+          {/* Left edge fade — blends into the content column */}
           <div
             style={{
-              borderRadius: "4px",
-              overflow: "hidden",
-              border: "1px solid rgba(255, 130, 0, 0.2)",
-              position: "relative",
-              maxWidth: "480px",
+              position: "absolute",
+              top: 0,
+              left: 0,
+              bottom: 0,
+              width: "120px",
+              background: "linear-gradient(to right, #0f1012, transparent)",
+              zIndex: 2,
+              pointerEvents: "none",
+            }}
+          />
+          {/* Top edge fade */}
+          <div
+            style={{
+              position: "absolute",
+              top: 0,
+              left: 0,
+              right: 0,
+              height: "100px",
+              background: "linear-gradient(to bottom, #0f1012, transparent)",
+              zIndex: 2,
+              pointerEvents: "none",
+            }}
+          />
+          {/* Bottom edge fade */}
+          <div
+            style={{
+              position: "absolute",
+              bottom: 0,
+              left: 0,
+              right: 0,
+              height: "120px",
+              background: "linear-gradient(to top, #0f1012, transparent)",
+              zIndex: 2,
+              pointerEvents: "none",
+            }}
+          />
+
+          {/* Caption overlay */}
+          <div
+            style={{
+              position: "absolute",
+              bottom: "1.5rem",
+              right: "1.5rem",
+              fontFamily: "'JetBrains Mono', monospace",
+              fontSize: "0.65rem",
+              color: "rgba(255,255,255,0.35)",
+              zIndex: 3,
+              textAlign: "right",
             }}
           >
-            <img
-              src={PHILIP_MEDAL}
-              alt="Philip at Spartan Race finish line"
-              style={{
-                width: "100%",
-                height: "340px",
-                objectFit: "cover",
-                objectPosition: "right top",
-                display: "block",
-                filter: "brightness(0.82) contrast(1.08)",
-              }}
-            />
-            {/* Bottom gradient */}
-            <div
-              style={{
-                position: "absolute",
-                bottom: 0,
-                left: 0,
-                right: 0,
-                height: "70px",
-                background: "linear-gradient(to top, rgba(15,16,18,0.95), transparent)",
-              }}
-            />
-            <div
-              style={{
-                position: "absolute",
-                bottom: "0.75rem",
-                left: "1rem",
-                fontFamily: "'JetBrains Mono', monospace",
-                fontSize: "0.68rem",
-                color: "#8a8f96",
-              }}
-            >
-              // spartan race finish line — the result of a debugged system
-            </div>
+            // spartan race finisher
+            <br />
+            // the result of a debugged system
           </div>
+
+          {/* Orange accent line on left edge */}
+          <div
+            style={{
+              position: "absolute",
+              top: "20%",
+              bottom: "20%",
+              left: 0,
+              width: "2px",
+              background: "linear-gradient(to bottom, transparent, #ff8200, transparent)",
+              zIndex: 3,
+            }}
+          />
         </div>
       </div>
     </section>

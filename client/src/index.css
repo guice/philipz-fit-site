@@ -364,13 +364,25 @@
     }
   }
 
-  /* Community CTA + photo side-by-side grid */
-  .community-cta-grid {
+  /* Community section: stacked on mobile, side-by-side on desktop */
+  /* Content left, tall vertical photo right */
+  .community-layout {
     grid-template-columns: 1fr;
   }
-  @media (min-width: 768px) {
-    .community-cta-grid {
-      grid-template-columns: 1fr 1fr;
+  .community-photo-col {
+    display: none;
+  }
+  @media (min-width: 900px) {
+    .community-layout {
+      grid-template-columns: 1fr 420px;
+    }
+    .community-photo-col {
+      display: block;
+    }
+  }
+  @media (min-width: 1200px) {
+    .community-layout {
+      grid-template-columns: 1fr 500px;
     }
   }
 
