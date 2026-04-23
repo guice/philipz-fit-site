@@ -71,7 +71,8 @@ export default function CommunitySection() {
         overflow: "hidden",
       }}
     >
-      {/* Two-column grid: content left, photo right */}
+      {/* Two-column grid: content left, photo right — constrained to site max-width */}
+      <div style={{ maxWidth: "1280px", margin: "0 auto", width: "100%" }}>
       <div
         style={{
           display: "grid",
@@ -341,6 +342,7 @@ export default function CommunitySection() {
           </div>
         </div>
         )}
+      </div>
       </div>
     </section>
   );
