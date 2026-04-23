@@ -34,12 +34,14 @@ function useVisible(threshold = 0.1) {
 
 const gitLog = [
   { hash: "a1b2c3d", message: "Initial commit — 134lb, couldn't do a pull-up", tag: "v0.1", tagColor: "#8a8f96", tagBg: "rgba(255,255,255,0.08)" },
-  { hash: "e4f5g6h", message: "First bulk cycle — learned progressive overload", tag: null, tagColor: "", tagBg: "" },
-  { hash: "i7j8k9l", message: "Rejected by Air Force — too frail, high risk of breaking", tag: "v1.0", tagColor: "#ef4444", tagBg: "rgba(239,68,68,0.12)" },
-  { hash: "m0n1o2p", message: "25+ years in software engineering", tag: null, tagColor: "", tagBg: "" },
-  { hash: "q3r4s5t", message: "10 years of trial, error, and relentless debugging", tag: "v2.0", tagColor: "#8a8f96", tagBg: "rgba(255,255,255,0.08)" },
-  { hash: "u6v7w8x", message: "Spartan Race finisher", tag: "stable", tagColor: "#4ade80", tagBg: "rgba(74,222,128,0.12)" },
-  { hash: "y9z0a1b", message: "Launched Geek 2 Greek — helping engineers level up", tag: "latest", tagColor: "#0f1012", tagBg: "#ff8200" },
+  { hash: "b2c3d4e", message: "Rejected by Air Force — body flagged as too fragile to serve", tag: null, tagColor: "", tagBg: "" },
+  { hash: "c3d4e5f", message: "Started software engineering — body still running v0.1", tag: "v0.5", tagColor: "#8a8f96", tagBg: "rgba(255,255,255,0.08)" },
+  { hash: "d4e5f6g", message: "Lived online — no real-world XP, just isolation", tag: null, tagColor: "", tagBg: "" },
+  { hash: "e5f6g7h", message: "Found a trainer — first time someone handed me a spec", tag: "v1.0", tagColor: "#ef4444", tagBg: "rgba(239,68,68,0.12)" },
+  { hash: "f6g7h8i", message: "Ventured solo — learned progressive overload the hard way", tag: "v1.5", tagColor: "#8a8f96", tagBg: "rgba(255,255,255,0.08)" },
+  { hash: "g7h8i9j", message: "10 years of trial, error, and relentless debugging", tag: null, tagColor: "", tagBg: "" },
+  { hash: "h8i9j0k", message: "Crossed the finish line — Spartan & Tough Mudder finisher", tag: "v2.0", tagColor: "#8a8f96", tagBg: "rgba(255,255,255,0.08)" },
+  { hash: "i9j0k1l", message: "Launched Geek 2 Greek — helping engineers level up", tag: "latest", tagColor: "#0f1012", tagBg: "#ff8200" },
 ];
 
 export default function AboutSection() {
