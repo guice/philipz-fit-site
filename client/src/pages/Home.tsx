@@ -10,7 +10,7 @@ import ForSection from "@/components/ForSection";
 import AboutSection from "@/components/AboutSection";
 import PipelineSection from "@/components/PipelineSection";
 import CommunitySection from "@/components/CommunitySection";
-import TestimonialsSection from "@/components/TestimonialsSection";
+// import TestimonialsSection from "@/components/TestimonialsSection"; // hidden until real testimonials are ready
 import BookSection from "@/components/BookSection";
 import Footer from "@/components/Footer";
 
@@ -23,7 +23,7 @@ export default function Home() {
       <ForSection />
       <AboutSection />
       <PipelineSection />
-      <TestimonialsSection />
+      {/* <TestimonialsSection /> — hidden until real client testimonials are available */}
       <CommunitySection />
       <BookSection />
       <Footer />
