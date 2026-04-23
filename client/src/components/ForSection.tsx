@@ -78,7 +78,7 @@ export default function ForSection() {
             style={{
               fontFamily: "'Barlow Condensed', sans-serif",
               fontWeight: 900,
-              fontSize: "clamp(2rem, 4vw, 3.2rem)",
+              fontSize: "clamp(2.5rem, 5vw, 4rem)",
               textTransform: "uppercase",
               color: "#f0ede8",
               lineHeight: 1,
