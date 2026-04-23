@@ -15,8 +15,8 @@ const PHILIP_PHOTO = "https://res.cloudinary.com/dzjucinkn/image/upload/q_auto/f
 const GYM_BG = "https://res.cloudinary.com/dzjucinkn/image/upload/q_auto/f_auto/v1776806680/mohamed-fareed-rbSNsoXk-3A-unsplash_t8ba3h.jpg";
 
 // Before/After transformation photos (torso-only shots, cropped to matching height)
-const BEFORE_PHOTO = "/manus-storage/Before-2008-Edited-Cropped_6264fd84.png";
-const AFTER_PHOTO = "/manus-storage/After-20260330-Transparent-Edited-Cropped_4804abfb.png";
+const BEFORE_PHOTO = "https://res.cloudinary.com/dzjucinkn/image/upload/q_auto/f_auto/v1776975080/Before_-_2008_-_Edited_ttmgyl.png";
+const AFTER_PHOTO = "https://res.cloudinary.com/dzjucinkn/image/upload/q_auto/f_auto/v1776975080/After_-_20260330_-_Transparent_-_Edited_h1glkr.png";
 
 function useVisible(threshold = 0.1) {
   const ref = useRef<HTMLDivElement>(null);
