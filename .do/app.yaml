@@ -1,0 +1,10 @@
+name: philipz-fit-site
+static_sites:
+  - name: philipz-fit-site
+    source_dir: /
+    build_command: cd client && pnpm install && pnpm run build
+    output_dir: dist/public
+    index_document: index.html
+    error_document: index.html
+    catchall_document: index.html
+    envs: []
