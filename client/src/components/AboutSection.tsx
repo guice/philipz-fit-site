@@ -14,9 +14,9 @@ const PHILIP_PHOTO = "https://res.cloudinary.com/dzjucinkn/image/upload/q_auto/f
 // Faded gym background for depth behind portrait
 const GYM_BG = "https://res.cloudinary.com/dzjucinkn/image/upload/q_auto/f_auto/v1776806680/mohamed-fareed-rbSNsoXk-3A-unsplash_t8ba3h.jpg";
 
-// Before/After transformation photos
-const BEFORE_PHOTO = "/manus-storage/Before-2008-transparentbackground_d37ee5a1.png";
-const AFTER_PHOTO = "/manus-storage/After-20260330-Transparentbackground_cc34220a.png";
+// Before/After transformation photos (torso-only shots)
+const BEFORE_PHOTO = "/manus-storage/Before-2008-Edited_de966c7e.png";
+const AFTER_PHOTO = "/manus-storage/After-20260330-Transparent-Edited_6a42bc56.png";
 
 function useVisible(threshold = 0.1) {
   const ref = useRef<HTMLDivElement>(null);
