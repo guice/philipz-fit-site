@@ -33,21 +33,13 @@ export default function Navbar() {
     >
       <div className="container">
         <div className="flex items-center justify-between h-16">
-          {/* Logo */}
+          {/* Logo — ZF mark SVG */}
           <a href="#" className="flex items-center gap-2 group" style={{ textDecoration: "none" }}>
-            <div
-              className="w-8 h-8 flex items-center justify-center font-bold text-sm"
-              style={{
-                backgroundColor: "#ff8200",
-                color: "#0f1012",
-                fontFamily: "'Barlow Condensed', sans-serif",
-                fontWeight: 900,
-                fontSize: "1.1rem",
-                borderRadius: "2px",
-              }}
-            >
-              CPZ
-            </div>
+            <img
+              src="/manus-storage/cpz-logo_b22c4a6c.svg"
+              alt="CPZ Fitness logo"
+              style={{ height: "38px", width: "auto", display: "block" }}
+            />
             <span
               style={{
                 fontFamily: "'Barlow Condensed', sans-serif",

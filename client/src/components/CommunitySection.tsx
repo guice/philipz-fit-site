@@ -8,7 +8,7 @@ import { useEffect, useRef, useState } from "react";
 
 const COMMUNITY_BG = "https://res.cloudinary.com/dzjucinkn/image/upload/q_auto/f_auto/v1776806680/mohamed-fareed-rbSNsoXk-3A-unsplash_t8ba3h.jpg";
 // Using the Spartan Race medal photo — shows Philip's full vertical profile
-const PHILIP_MEDAL = "https://res.cloudinary.com/dzjucinkn/image/upload/q_auto/f_auto/v1776803159/philip-finish_cqkte2.jpg";
+const PHILIP_MEDAL = "https://res.cloudinary.com/dzjucinkn/image/upload/q_auto/f_auto/v1776803158/philip-medal_ippfik.jpg";
 
 function useVisible(threshold = 0.15) {
   const ref = useRef<HTMLDivElement>(null);
