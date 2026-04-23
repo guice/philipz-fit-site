@@ -1,23 +1,40 @@
 /* ==========================================================================
    BOOK SECTION — CPZ Fitness "Spartan Engineer" design
-   Free strategy call — 2-col: placeholder form | YAML spec + what we'll cover
-   Photo removed per feedback — section was too crowded with 3 cols.
+   GHL booking iframe (dynamic height via postMessage) | YAML spec + agenda
    ========================================================================== */
 
 import { useEffect, useRef, useState } from "react";
 
-// GHL booking widget script — injected once on mount
+// Inject GHL form_embed.js once — it handles iframe auto-resize via postMessage
 function useGHLScript() {
   useEffect(() => {
-    const existing = document.getElementById("ghl-form-embed-script");
-    if (existing) return;
+    if (document.getElementById("ghl-form-embed-script")) return;
     const script = document.createElement("script");
     script.src = "https://link.msgsndr.com/js/form_embed.js";
     script.type = "text/javascript";
     script.id = "ghl-form-embed-script";
     document.body.appendChild(script);
-    return () => { /* leave script in DOM so it doesn't reload on re-render */ };
   }, []);
+}
+
+// Dynamic iframe height — listens for GHL postMessage resize events
+function useIframeHeight(iframeId: string, defaultHeight = 700) {
+  const [height, setHeight] = useState(defaultHeight);
+  useEffect(() => {
+    function onMessage(e: MessageEvent) {
+      if (!e.data || typeof e.data !== "object") return;
+      // GHL emits { type: "SET_HEIGHT", value: <px> } or { iframeId, height }
+      if (e.data.iframeId === iframeId && typeof e.data.height === "number") {
+        setHeight(Math.max(e.data.height, defaultHeight));
+      }
+      if (e.data.type === "SET_HEIGHT" && typeof e.data.value === "number") {
+        setHeight(Math.max(e.data.value, defaultHeight));
+      }
+    }
+    window.addEventListener("message", onMessage);
+    return () => window.removeEventListener("message", onMessage);
+  }, [iframeId, defaultHeight]);
+  return height;
 }
 
 function useVisible(threshold = 0.1) {
@@ -34,6 +51,8 @@ function useVisible(threshold = 0.1) {
   return { ref, visible };
 }
 
+const GHL_IFRAME_ID = "Iv6cZv9w9cMG3ZAHzmHy_1776978768512";
+
 const yamlLines = [
   { key: "duration",    value: "15 min",              color: "#4ade80" },
   { key: "cost",        value: "$0",                  color: "#ff8200" },
@@ -47,6 +66,7 @@ const yamlLines = [
 export default function BookSection() {
   const { ref, visible } = useVisible();
   useGHLScript();
+  const iframeHeight = useIframeHeight(GHL_IFRAME_ID, 700);
 
   return (
     <section
@@ -80,9 +100,9 @@ export default function BookSection() {
               marginBottom: "0.75rem",
             }}
           >
-            Ready to push
+            Pick a time.
             <br />
-            <span style={{ color: "#ff8200" }}>your first commit?</span>
+            <span style={{ color: "#ff8200" }}>Let's debug it.</span>
           </h2>
           <p
             style={{
@@ -90,14 +110,14 @@ export default function BookSection() {
               fontSize: "1rem",
               color: "#b0aca6",
               lineHeight: 1.75,
-              maxWidth: "560px",
+              maxWidth: "520px",
             }}
           >
-            Book a free 15-minute strategy call. No sales pitch, no pressure. We'll review your current stack, identify the bottlenecks, and map out a roadmap. If we're a fit, great. If not, you'll still walk away with actionable insights.
+            15 minutes. No pitch, no pressure. We'll find the bug in your system and map out the fix.
           </p>
         </div>
 
-        {/* Two-column layout: form | spec + what we'll cover */}
+        {/* Two-column layout: GHL iframe | YAML spec + agenda */}
         <div
           style={{
             display: "grid",
@@ -132,19 +152,24 @@ export default function BookSection() {
                 </span>
               </div>
 
-              {/* GHL Booking Widget */}
-              <div style={{ padding: "0" }}>
-                <iframe
-                  src="https://api.leadconnectorhq.com/widget/booking/Iv6cZv9w9cMG3ZAHzmHy"
-                  style={{ width: "100%", border: "none", overflow: "hidden", display: "block", minHeight: "700px" }}
-                  scrolling="no"
-                  id="Iv6cZv9w9cMG3ZAHzmHy_1776978768512"
-                />
-              </div>
+              {/* GHL Booking Widget — height grows dynamically via postMessage */}
+              <iframe
+                src="https://api.leadconnectorhq.com/widget/booking/Iv6cZv9w9cMG3ZAHzmHy"
+                style={{
+                  width: "100%",
+                  border: "none",
+                  overflow: "hidden",
+                  display: "block",
+                  height: `${iframeHeight}px`,
+                  transition: "height 0.3s ease",
+                }}
+                scrolling="no"
+                id={GHL_IFRAME_ID}
+              />
             </div>
           </div>
 
-          {/* ── Col 2: YAML spec + what we'll cover ── */}
+          {/* ── Col 2: YAML spec + agenda ── */}
           <div
             style={{
               display: "flex",
