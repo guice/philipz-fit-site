@@ -88,12 +88,11 @@ export default function CommunitySection() {
         {/* LEFT: All content */}
         <div
           style={{
-            padding: "6rem 0",
             position: "relative",
             zIndex: 1,
           }}
         >
-          <div className="container" style={{ maxWidth: "680px", marginLeft: 0, paddingLeft: "2rem", paddingRight: "2rem" }}>
+          <div className="container" style={{ maxWidth: "680px", marginLeft: 0, paddingLeft: "2rem", paddingRight: "2rem", paddingTop: "6rem", paddingBottom: "6rem" }}>
 
             {/* Section label */}
             <div
@@ -242,102 +241,104 @@ export default function CommunitySection() {
           </div>
         </div>
 
-        {/* RIGHT: Tall vertical medal photo — fills grid cell height */}
+        {/* RIGHT: Tall vertical medal photo — fills grid cell height, padded to match content column */}
         {showPhotoCol && (
         <div
           style={{
-            position: "relative",
-            overflow: "hidden",
             alignSelf: "stretch",
+            paddingTop: "6rem",
+            paddingBottom: "6rem",
             minHeight: "600px",
           }}
         >
-          {/* Photo */}
-          <img
-            src={PHILIP_MEDAL}
-            alt="Philip holding his Spartan Race medal"
+          {/* Inner wrapper fills the padded area and holds the absolutely-positioned photo */}
+          <div
             style={{
-              position: "absolute",
-              inset: 0,
-              width: "100%",
+              position: "relative",
               height: "100%",
-              objectFit: "cover",
-              objectPosition: "center top",
-              display: "block",
-              filter: "brightness(0.78) contrast(1.1) saturate(0.9)",
-            }}
-          />
-
-          {/* Left edge fade — blends into the content column */}
-          <div
-            style={{
-              position: "absolute",
-              top: 0,
-              left: 0,
-              bottom: 0,
-              width: "120px",
-              background: "linear-gradient(to right, #0f1012, transparent)",
-              zIndex: 2,
-              pointerEvents: "none",
-            }}
-          />
-          {/* Top edge fade */}
-          <div
-            style={{
-              position: "absolute",
-              top: 0,
-              left: 0,
-              right: 0,
-              height: "100px",
-              background: "linear-gradient(to bottom, #0f1012, transparent)",
-              zIndex: 2,
-              pointerEvents: "none",
-            }}
-          />
-          {/* Bottom edge fade */}
-          <div
-            style={{
-              position: "absolute",
-              bottom: 0,
-              left: 0,
-              right: 0,
-              height: "120px",
-              background: "linear-gradient(to top, #0f1012, transparent)",
-              zIndex: 2,
-              pointerEvents: "none",
-            }}
-          />
-
-          {/* Caption overlay — end of sticky photo column */}
-          <div
-            style={{
-              position: "absolute",
-              bottom: "1.5rem",
-              right: "1.5rem",
-              fontFamily: "'JetBrains Mono', monospace",
-              fontSize: "0.65rem",
-              color: "rgba(255,255,255,0.35)",
-              zIndex: 3,
-              textAlign: "right",
+              overflow: "hidden",
+              borderRadius: "2px",
             }}
           >
-            // spartan race finisher
-            <br />
-            // the result of a debugged system
-          </div>
+            {/* Photo */}
+            <img
+              src={PHILIP_MEDAL}
+              alt="Philip holding his Spartan Race medal"
+              style={{
+                position: "absolute",
+                inset: 0,
+                width: "100%",
+                height: "100%",
+                objectFit: "cover",
+                objectPosition: "center top",
+                display: "block",
+                filter: "brightness(0.78) contrast(1.1) saturate(0.9)",
+              }}
+            />
 
-          {/* Orange accent line on left edge */}
-          <div
-            style={{
-              position: "absolute",
-              top: "20%",
-              bottom: "20%",
-              left: 0,
-              width: "2px",
-              background: "linear-gradient(to bottom, transparent, #ff8200, transparent)",
-              zIndex: 3,
-            }}
-          />
+            {/* Left edge fade */}
+            <div
+              style={{
+                position: "absolute",
+                top: 0, left: 0, bottom: 0,
+                width: "100px",
+                background: "linear-gradient(to right, #0f1012, transparent)",
+                zIndex: 2,
+                pointerEvents: "none",
+              }}
+            />
+            {/* Top edge fade */}
+            <div
+              style={{
+                position: "absolute",
+                top: 0, left: 0, right: 0,
+                height: "80px",
+                background: "linear-gradient(to bottom, #0f1012, transparent)",
+                zIndex: 2,
+                pointerEvents: "none",
+              }}
+            />
+            {/* Bottom edge fade */}
+            <div
+              style={{
+                position: "absolute",
+                bottom: 0, left: 0, right: 0,
+                height: "80px",
+                background: "linear-gradient(to top, #0f1012, transparent)",
+                zIndex: 2,
+                pointerEvents: "none",
+              }}
+            />
+
+            {/* Caption */}
+            <div
+              style={{
+                position: "absolute",
+                bottom: "1rem",
+                right: "1rem",
+                fontFamily: "'JetBrains Mono', monospace",
+                fontSize: "0.6rem",
+                color: "rgba(255,255,255,0.3)",
+                zIndex: 3,
+                textAlign: "right",
+              }}
+            >
+              // spartan race finisher
+              <br />
+              // the result of a debugged system
+            </div>
+
+            {/* Orange accent line */}
+            <div
+              style={{
+                position: "absolute",
+                top: "20%", bottom: "20%", left: 0,
+                width: "2px",
+                background: "linear-gradient(to bottom, transparent, #ff8200, transparent)",
+                zIndex: 3,
+              }}
+            />
+          </div>
         </div>
         )}
       </div>
