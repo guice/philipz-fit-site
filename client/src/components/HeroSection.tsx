@@ -99,7 +99,7 @@ export default function HeroSection() {
             style={{
               fontFamily: "'Barlow Condensed', sans-serif",
               fontWeight: 900,
-              fontSize: "clamp(4rem, 9vw, 8.5rem)",
+              fontSize: "clamp(3rem, 7vw, 6.5rem)",
               lineHeight: 0.92,
               textTransform: "uppercase",
               color: "#f0ede8",
