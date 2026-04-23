@@ -3,6 +3,8 @@
    Simple dark footer with social links and tagline
    ========================================================================== */
 
+import CpzLogo from "./CpzLogo";
+
 const socials = [
   { label: "Instagram", href: "https://www.instagram.com/philipz.fit/", icon: "IG" },
   { label: "TikTok", href: "https://www.tiktok.com/@philipz.fit", icon: "TT" },
@@ -34,11 +36,7 @@ export default function Footer() {
         >
           {/* Logo */}
           <div style={{ display: "flex", alignItems: "center", gap: "0.625rem" }}>
-            <img
-              src="/manus-storage/cpz-logo_b22c4a6c.svg"
-              alt="CPZ Fitness logo"
-              style={{ height: "32px", width: "auto", display: "block" }}
-            />
+            <CpzLogo size={32} />
             <div>
               <div
                 style={{

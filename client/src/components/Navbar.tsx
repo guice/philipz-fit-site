@@ -4,6 +4,7 @@
    ========================================================================== */
 
 import { useState, useEffect } from "react";
+import CpzLogo from "./CpzLogo";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -33,13 +34,9 @@ export default function Navbar() {
     >
       <div className="container">
         <div className="flex items-center justify-between h-16">
-          {/* Logo — ZF mark SVG */}
+          {/* Logo — ZF mark inline SVG */}
           <a href="#" className="flex items-center gap-2 group" style={{ textDecoration: "none" }}>
-            <img
-              src="/manus-storage/cpz-logo_b22c4a6c.svg"
-              alt="CPZ Fitness logo"
-              style={{ height: "38px", width: "auto", display: "block" }}
-            />
+            <CpzLogo size={38} />
             <span
               style={{
                 fontFamily: "'Barlow Condensed', sans-serif",
