@@ -16,7 +16,7 @@ const GYM_BG = "https://res.cloudinary.com/dzjucinkn/image/upload/q_auto/f_auto/
 
 // Before/After transformation photos (torso-only shots)
 const BEFORE_PHOTO = "/manus-storage/Before-2008-Edited_de966c7e.png";
-const AFTER_PHOTO = "/manus-storage/After-20260330-Transparent-Edited_6a42bc56.png";
+const AFTER_PHOTO = "/manus-storage/After-20260330-Transparent-Edited_86740e6c.png";
 
 function useVisible(threshold = 0.1) {
   const ref = useRef<HTMLDivElement>(null);
