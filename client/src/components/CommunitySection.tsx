@@ -6,6 +6,16 @@
 
 import { useEffect, useRef, useState } from "react";
 
+function useWindowWidth() {
+  const [width, setWidth] = useState(typeof window !== "undefined" ? window.innerWidth : 1280);
+  useEffect(() => {
+    const handler = () => setWidth(window.innerWidth);
+    window.addEventListener("resize", handler);
+    return () => window.removeEventListener("resize", handler);
+  }, []);
+  return width;
+}
+
 // Using the Spartan Race medal photo — vertical portrait orientation
 const PHILIP_MEDAL = "https://res.cloudinary.com/dzjucinkn/image/upload/q_auto/f_auto/v1776803158/philip-medal_ippfik.jpg";
 
@@ -48,6 +58,8 @@ const features = [
 
 export default function CommunitySection() {
   const { ref, visible } = useVisible();
+  const windowWidth = useWindowWidth();
+  const showPhotoCol = windowWidth >= 700;
 
   return (
     <section
@@ -63,10 +75,15 @@ export default function CommunitySection() {
       <div
         style={{
           display: "grid",
-          gridTemplateColumns: "1fr",
+          gridTemplateColumns: showPhotoCol
+            ? windowWidth >= 1280
+              ? "1fr 520px"
+              : windowWidth >= 1024
+              ? "1fr 440px"
+              : "1fr 340px"
+            : "1fr",
           minHeight: "700px",
         }}
-        className="community-layout"
       >
         {/* LEFT: All content */}
         <div
@@ -225,13 +242,15 @@ export default function CommunitySection() {
           </div>
         </div>
 
-        {/* RIGHT: Tall vertical medal photo */}
+        {/* RIGHT: Tall vertical medal photo — stretches full section height */}
+        {showPhotoCol && (
         <div
-          className="community-photo-col"
           style={{
-            position: "relative",
-            minHeight: "600px",
+            position: "sticky",
+            top: 0,
+            height: "100vh",
             overflow: "hidden",
+            alignSelf: "stretch",
           }}
         >
           {/* Photo */}
@@ -290,7 +309,7 @@ export default function CommunitySection() {
             }}
           />
 
-          {/* Caption overlay */}
+          {/* Caption overlay — end of sticky photo column */}
           <div
             style={{
               position: "absolute",
@@ -321,6 +340,7 @@ export default function CommunitySection() {
             }}
           />
         </div>
+        )}
       </div>
     </section>
   );
