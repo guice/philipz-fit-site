@@ -14,6 +14,10 @@ const PHILIP_PHOTO = "https://res.cloudinary.com/dzjucinkn/image/upload/q_auto/f
 // Faded gym background for depth behind portrait
 const GYM_BG = "https://res.cloudinary.com/dzjucinkn/image/upload/q_auto/f_auto/v1776806680/mohamed-fareed-rbSNsoXk-3A-unsplash_t8ba3h.jpg";
 
+// Before/After transformation photos
+const BEFORE_PHOTO = "/manus-storage/Before-2008-transparentbackground_d37ee5a1.png";
+const AFTER_PHOTO = "/manus-storage/After-20260330-Transparentbackground_cc34220a.png";
+
 function useVisible(threshold = 0.1) {
   const ref = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
@@ -128,6 +132,50 @@ export default function AboutSection() {
                   display: "block",
                 }}
               />
+            </div>
+
+            {/* Before/After transformation comparison */}
+            <div
+              style={{
+                display: "grid",
+                gridTemplateColumns: "1fr 1fr",
+                gap: "1rem",
+                maxWidth: "460px",
+                marginBottom: "2rem",
+              }}
+            >
+              <div style={{ textAlign: "center" }}>
+                <img
+                  src={BEFORE_PHOTO}
+                  alt="Before — 134 lbs"
+                  style={{
+                    width: "100%",
+                    height: "auto",
+                    borderRadius: "4px",
+                    border: "1px solid rgba(255,255,255,0.1)",
+                    marginBottom: "0.5rem",
+                  }}
+                />
+                <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.75rem", color: "#8a8f96", textTransform: "uppercase" }}>
+                  Before: 134 lbs
+                </div>
+              </div>
+              <div style={{ textAlign: "center" }}>
+                <img
+                  src={AFTER_PHOTO}
+                  alt="After — 175 lbs"
+                  style={{
+                    width: "100%",
+                    height: "auto",
+                    borderRadius: "4px",
+                    border: "1px solid rgba(255,255,255,0.1)",
+                    marginBottom: "0.5rem",
+                  }}
+                />
+                <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.75rem", color: "#ff8200", textTransform: "uppercase", fontWeight: 600 }}>
+                  After: 175 lbs
+                </div>
+              </div>
             </div>
 
             {/* Stats row */}
