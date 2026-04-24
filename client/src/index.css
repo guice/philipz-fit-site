@@ -125,6 +125,36 @@
   --sidebar-ring: oklch(0.67 0.19 45);
 }
 
+.light {
+  --background: oklch(0.98 0.001 240);
+  --foreground: oklch(0.12 0.01 240);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.12 0.01 240);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.12 0.01 240);
+  --primary: oklch(0.67 0.19 45);
+  --primary-foreground: oklch(1 0 0);
+  --secondary: oklch(0.92 0.01 240);
+  --secondary-foreground: oklch(0.12 0.01 240);
+  --muted: oklch(0.88 0.01 240);
+  --muted-foreground: oklch(0.55 0.01 240);
+  --accent: oklch(0.67 0.19 45);
+  --accent-foreground: oklch(1 0 0);
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(1 0 0);
+  --border: oklch(0 0 0 / 10%);
+  --input: oklch(0 0 0 / 8%);
+  --ring: oklch(0.67 0.19 45);
+  --sidebar: oklch(0.96 0.001 240);
+  --sidebar-foreground: oklch(0.12 0.01 240);
+  --sidebar-primary: oklch(0.67 0.19 45);
+  --sidebar-primary-foreground: oklch(1 0 0);
+  --sidebar-accent: oklch(0.92 0.01 240);
+  --sidebar-accent-foreground: oklch(0.12 0.01 240);
+  --sidebar-border: oklch(0 0 0 / 10%);
+  --sidebar-ring: oklch(0.67 0.19 45);
+}
+
 @layer base {
   * {
     @apply border-border outline-ring/50;
@@ -132,9 +162,16 @@
   body {
     @apply bg-background text-foreground;
     font-family: 'Space Grotesk', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  body.dark {
     background-color: #0f1012;
     color: #f0ede8;
-    -webkit-font-smoothing: antialiased;
+  }
+  body.light {
+    background-color: #f8f7f5;
+    color: #1a1a1a;
   }
   button:not(:disabled),
   [role="button"]:not([aria-disabled="true"]),
