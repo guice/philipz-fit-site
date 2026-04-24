@@ -67,6 +67,7 @@ export default function BookSection() {
     phone: "",
     issue: "",
   });
+  const [smsConsent, setSmsConsent] = useState(false);
 
   function handleChange(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
     setFields(prev => ({ ...prev, [e.target.name]: e.target.value }));
@@ -260,6 +261,44 @@ export default function BookSection() {
                         onBlur={() => setFocusedField(null)}
                         style={{ ...inputStyle, border: getFocusBorder("phone") }}
                       />
+                      {/* SMS consent — only shown when phone has content */}
+                      {fields.phone.trim().length > 0 && (
+                        <label
+                          htmlFor="sms-consent"
+                          style={{
+                            display: "flex",
+                            alignItems: "flex-start",
+                            gap: "0.6rem",
+                            marginTop: "0.65rem",
+                            cursor: "pointer",
+                          }}
+                        >
+                          <input
+                            id="sms-consent"
+                            type="checkbox"
+                            checked={smsConsent}
+                            onChange={e => setSmsConsent(e.target.checked)}
+                            style={{
+                              marginTop: "2px",
+                              accentColor: "#ff8200",
+                              flexShrink: 0,
+                              width: "14px",
+                              height: "14px",
+                              cursor: "pointer",
+                            }}
+                          />
+                          <span
+                            style={{
+                              fontFamily: "'Space Grotesk', sans-serif",
+                              fontSize: "0.75rem",
+                              color: "#8a8f96",
+                              lineHeight: 1.55,
+                            }}
+                          >
+                            By sharing your number, you're opting in to receive non-marketing texts (things like session reminders and follow-up notes) from Philip Z / CPZ Fitness. Message &amp; data rates may apply. Reply STOP at any time to opt out.
+                          </span>
+                        </label>
+                      )}
                     </div>
 
                     {/* Debug issue */}
