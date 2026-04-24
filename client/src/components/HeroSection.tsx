@@ -229,8 +229,8 @@ export default function HeroSection() {
             style={{
               marginTop: "2rem",
               padding: "1.25rem 1.5rem",
-              backgroundColor: "rgba(255, 130, 0, 0.05)",
-              border: "1px solid rgba(255, 130, 0, 0.15)",
+              backgroundColor: "rgba(255, 130, 0, 0.02)",
+              border: "1px solid rgba(255, 130, 0, 0.08)",
               borderRadius: "4px",
               opacity: visible ? 1 : 0,
               transform: visible ? "translateY(0)" : "translateY(20px)",
