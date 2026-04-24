@@ -140,6 +140,7 @@ export default function BookSection() {
                 border: "1px solid rgba(255, 130, 0, 0.15)",
                 borderRadius: "4px",
                 overflow: "hidden",
+                padding: 0,
               }}
             >
               {/* Terminal header */}
