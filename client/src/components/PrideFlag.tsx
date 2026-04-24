@@ -7,9 +7,9 @@ interface PrideFlagProps {
 
 export const PrideFlag: React.FC<PrideFlagProps> = ({ size = "md", className = "" }) => {
   const sizeMap = {
-    sm: "w-4 h-3",
-    md: "w-6 h-4",
-    lg: "w-8 h-6",
+    sm: "w-5.5 h-4.2",
+    md: "w-8.4 h-5.6",
+    lg: "w-11.2 h-8.4",
   };
 
   return (
