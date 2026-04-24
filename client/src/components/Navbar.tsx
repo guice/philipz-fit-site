@@ -5,7 +5,6 @@
 
 import { useState, useEffect } from "react";
 import CpzLogo from "./CpzLogo";
-import ThemeToggle from "./ThemeToggle";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -53,7 +52,7 @@ export default function Navbar() {
           </a>
 
           {/* Desktop Nav */}
-          <div className="hidden md:flex items-center gap-6 flex-1">
+          <div className="hidden md:flex items-center gap-6">
             {navLinks.map((link) =>
               link.primary ? (
                 <a key={link.label} href={link.href} className="btn-primary" style={{ padding: "0.5rem 1.25rem", fontSize: "0.85rem" }}>
@@ -80,11 +79,6 @@ export default function Navbar() {
                 </a>
               )
             )}
-          </div>
-
-          {/* Theme Toggle — Desktop only, far right */}
-          <div className="hidden md:flex items-center">
-            <ThemeToggle />
           </div>
 
           {/* Mobile menu button */}
