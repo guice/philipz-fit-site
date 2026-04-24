@@ -5,6 +5,7 @@
 
 import { useState, useEffect } from "react";
 import CpzLogo from "./CpzLogo";
+import { PrideFlag } from "./PrideFlag";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -53,6 +54,7 @@ export default function Navbar() {
 
           {/* Desktop Nav */}
           <div className="hidden md:flex items-center gap-6">
+            <PrideFlag size="sm" />
             {navLinks.map((link) =>
               link.primary ? (
                 <a key={link.label} href={link.href} className="btn-primary" style={{ padding: "0.5rem 1.25rem", fontSize: "0.85rem" }}>

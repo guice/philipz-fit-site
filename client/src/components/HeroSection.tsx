@@ -5,6 +5,7 @@
    ========================================================================== */
 
 import { useEffect, useState } from "react";
+import { PrideFlag } from "./PrideFlag";
 
 const HERO_BG = "https://res.cloudinary.com/dzjucinkn/image/upload/q_auto/f_auto/v1776806680/mohamed-fareed-rbSNsoXk-3A-unsplash_t8ba3h.jpg";
 
@@ -87,10 +88,16 @@ export default function HeroSection() {
             style={{
               opacity: visible ? 1 : 0,
               transition: "opacity 0.6s ease",
+              display: "flex",
+              alignItems: "center",
+              gap: "0.5rem",
             }}
           >
             <div className="section-label" style={{ marginBottom: "1.5rem" }}>
               // philipz.fit — geek 2 greek
+            </div>
+            <div style={{ marginBottom: "1.5rem" }}>
+              <PrideFlag size="sm" />
             </div>
           </div>
 
@@ -215,6 +222,49 @@ export default function HeroSection() {
                 134 → 175 lb transformation
               </span>
             </div>
+          </div>
+
+          {/* Instagram callout */}
+          <div
+            style={{
+              marginTop: "2rem",
+              padding: "1.25rem 1.5rem",
+              backgroundColor: "rgba(255, 130, 0, 0.05)",
+              border: "1px solid rgba(255, 130, 0, 0.15)",
+              borderRadius: "4px",
+              opacity: visible ? 1 : 0,
+              transform: visible ? "translateY(0)" : "translateY(20px)",
+              transition: "opacity 0.7s ease 0.65s, transform 0.7s ease 0.65s",
+            }}
+          >
+            <p
+              style={{
+                fontFamily: "'Space Grotesk', sans-serif",
+                fontSize: "0.95rem",
+                color: "#b0aca6",
+                margin: 0,
+                lineHeight: 1.5,
+              }}
+            >
+              And don't forget to follow{" "}
+              <a
+                href="https://instagram.com/philipz.fit"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  color: "#ff8200",
+                  textDecoration: "none",
+                  fontWeight: 500,
+                  borderBottom: "1px solid rgba(255, 130, 0, 0.3)",
+                  transition: "border-color 0.2s ease",
+                }}
+                onMouseEnter={(e) => (e.currentTarget.style.borderColor = "rgba(255, 130, 0, 0.7)")}
+                onMouseLeave={(e) => (e.currentTarget.style.borderColor = "rgba(255, 130, 0, 0.3)")}
+              >
+                @philipz.fit
+              </a>{" "}
+              on IG for training tips and transformation content.
+            </p>
           </div>
         </div>
       </div>
