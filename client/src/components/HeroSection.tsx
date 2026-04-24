@@ -88,16 +88,10 @@ export default function HeroSection() {
             style={{
               opacity: visible ? 1 : 0,
               transition: "opacity 0.6s ease",
-              display: "flex",
-              alignItems: "center",
-              gap: "0.5rem",
             }}
           >
             <div className="section-label" style={{ marginBottom: "1.5rem" }}>
               // philipz.fit — geek 2 greek
-            </div>
-            <div style={{ marginBottom: "1.5rem" }}>
-              <PrideFlag size="sm" />
             </div>
           </div>
 

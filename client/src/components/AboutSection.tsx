@@ -5,6 +5,7 @@
    ========================================================================== */
 
 import { useEffect, useRef, useState } from "react";
+import { PrideFlag } from "./PrideFlag";
 
 const ABOUT_BG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663284143252/3AM5HcyaoCtGK7Q72bwxDY/cpz-about-texture-9cXjDdyAxrXjZ2xLPyS6nd.webp";
 
@@ -272,7 +273,9 @@ export default function AboutSection() {
               transition: "opacity 0.7s ease 0.15s, transform 0.7s ease 0.15s",
             }}
           >
-            <div className="section-label">// about.me</div>
+            <div className="section-label" style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
+              //<PrideFlag size="sm" /> about.me
+            </div>
             <h2
               style={{
                 fontFamily: "'Barlow Condensed', sans-serif",
