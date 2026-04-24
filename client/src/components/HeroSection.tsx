@@ -141,7 +141,7 @@ export default function HeroSection() {
               transition: "opacity 0.7s ease 0.25s, transform 0.7s ease 0.25s",
             }}
           >
-            I help desk-bound engineers build the physique they keep putting off — using the same systems thinking you already use at work.
+            I help desk-bound engineers build the physique we keep putting off — using the same system principals we already apply at work.
           </p>
 
           {/* CTAs */}

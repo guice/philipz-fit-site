@@ -28,7 +28,7 @@ const painPoints = [
   {
     icon: "🔁",
     title: "You keep respawning at the same checkpoint",
-    body: "You've started three times. Maybe four. You know the theory. The execution loop is broken somewhere and you can't find the bug.",
+    body: "You've started three times. Maybe six. You know the theory. The execution loop is broken somewhere and you can't find the bug.",
   },
   {
     icon: "🏋️",
@@ -38,7 +38,7 @@ const painPoints = [
   {
     icon: "📊",
     title: "You over-research, under-execute",
-    body: "You've read 47 Reddit threads on optimal training splits. You still haven't committed a single rep. Analysis paralysis is a real bug.",
+    body: "You've read 42 Reddit threads on optimal training splits. You still haven't committed a single rep. Analysis paralysis is a real bug.",
   },
   {
     icon: "🪞",

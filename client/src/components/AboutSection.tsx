@@ -304,16 +304,16 @@ export default function AboutSection() {
               }}
             >
               <p style={{ marginBottom: "1rem" }}>
-                I started at 134 pounds. The Air Force rejected me — body flagged as too fragile to serve. I was the walking broomstick in an oversized shirt. I know exactly what it feels like to be the weakest person in every room.
+                I started at 134 pounds. The Air Force rejected me for being too frail. I was the walking broomstick in an oversized shirt. I know what it feels like to be the weakest person in every room.
               </p>
               <p style={{ marginBottom: "1rem" }}>
-                I became a software engineer and got good at it. But outside of work, I retreated online. No social circle. No real-world XP. Just isolation — and a body still running the same broken build from day one.
+                I became a software engineer and got good at it. But outside of work, I retreated online. No social circle. No real-world XP. Just isolation — and a body that hadn't changed since high school.
               </p>
               <p style={{ marginBottom: "1rem" }}>
-                A trainer handed me my first real spec. I followed it, saw results, then ventured solo — ten years of trial, error, and relentless debugging until I understood how the system actually worked. I crossed Spartan and Tough Mudder finish lines. I built the body I was told I couldn't have.
+                A trainer handed me my first real spec. I followed it, saw results, then ventured solo — ten years of trial, error, and relentless debugging until I finally understood how the system worked. I completed Spartan and Tough Mudder races — the kind I couldn't have finished before. I built the body I was told I couldn't have.
               </p>
               <p>
-                Now I help fellow engineers stuck in the same loop. You don't need another generic plan. You need someone who speaks your language, understands your constraints, and has already debugged the exact system you're trying to fix.
+                Now I help my fellow engineers stuck in the same loop. You don't need another generic plan. You need someone who speaks your language, understands your constraints, and has already debugged the exact system you're trying to fix.
               </p>
             </div>
 
