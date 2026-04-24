@@ -1,7 +1,6 @@
 /* ==========================================================================
    BOOK SECTION — CPZ Fitness "Spartan Engineer" design
-   Contact form: name, email, optional phone, debug issue field
-   Right col: YAML spec + what we'll cover agenda
+   GHL form widget (dynamic height via postMessage) | YAML spec + agenda
    ========================================================================== */
 
 import { useEffect, useRef, useState } from "react";
@@ -20,6 +19,40 @@ function useVisible(threshold = 0.1) {
   return { ref, visible };
 }
 
+// Inject GHL form_embed.js once — it handles iframe auto-resize via postMessage
+function useGHLScript() {
+  useEffect(() => {
+    if (document.getElementById("ghl-form-embed-script")) return;
+    const script = document.createElement("script");
+    script.src = "https://link.msgsndr.com/js/form_embed.js";
+    script.type = "text/javascript";
+    script.id = "ghl-form-embed-script";
+    document.body.appendChild(script);
+  }, []);
+}
+
+// Dynamic iframe height — listens for GHL postMessage resize events
+function useIframeHeight(iframeId: string, defaultHeight = 700) {
+  const [height, setHeight] = useState(defaultHeight);
+  useEffect(() => {
+    function onMessage(e: MessageEvent) {
+      if (!e.data || typeof e.data !== "object") return;
+      // GHL emits { type: "SET_HEIGHT", value: <px> } or { iframeId, height }
+      if (e.data.iframeId === iframeId && typeof e.data.height === "number") {
+        setHeight(Math.max(e.data.height, defaultHeight));
+      }
+      if (e.data.type === "SET_HEIGHT" && typeof e.data.value === "number") {
+        setHeight(Math.max(e.data.value, defaultHeight));
+      }
+    }
+    window.addEventListener("message", onMessage);
+    return () => window.removeEventListener("message", onMessage);
+  }, [iframeId, defaultHeight]);
+  return height;
+}
+
+const GHL_IFRAME_ID = "Hiu3h6YoF9aNPhtcAgfR";
+
 const yamlLines = [
   { key: "response_time",  value: "< 24 hours",          color: "#4ade80" },
   { key: "cost",           value: "$0",                   color: "#ff8200" },
@@ -30,59 +63,10 @@ const yamlLines = [
   { key: "sales_pitch",    value: "false",                 color: "#ef4444" },
 ];
 
-const inputStyle: React.CSSProperties = {
-  width: "100%",
-  backgroundColor: "#0f1012",
-  border: "1px solid rgba(255, 130, 0, 0.2)",
-  borderRadius: "2px",
-  padding: "0.75rem 1rem",
-  fontFamily: "'Space Grotesk', sans-serif",
-  fontSize: "0.9rem",
-  color: "#f0ede8",
-  outline: "none",
-  boxSizing: "border-box",
-  transition: "border-color 0.2s ease",
-};
-
-const labelStyle: React.CSSProperties = {
-  fontFamily: "'JetBrains Mono', monospace",
-  fontSize: "0.72rem",
-  color: "#8a8f96",
-  textTransform: "uppercase" as const,
-  letterSpacing: "0.08em",
-  display: "block",
-  marginBottom: "0.4rem",
-};
-
-type FormState = "idle" | "submitting" | "success" | "error";
-
 export default function BookSection() {
   const { ref, visible } = useVisible();
-  const [formState, setFormState] = useState<FormState>("idle");
-  const [focusedField, setFocusedField] = useState<string | null>(null);
-
-  const [fields, setFields] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    issue: "",
-  });
-  const [smsConsent, setSmsConsent] = useState(false);
-
-  function handleChange(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
-    setFields(prev => ({ ...prev, [e.target.name]: e.target.value }));
-  }
-
-  async function handleSubmit(e: React.FormEvent) {
-    e.preventDefault();
-    setFormState("submitting");
-    // Simulate submission — wire to GHL webhook or email service when ready
-    await new Promise(res => setTimeout(res, 1200));
-    setFormState("success");
-  }
-
-  const getFocusBorder = (field: string) =>
-    focusedField === field ? "1px solid rgba(255, 130, 0, 0.7)" : inputStyle.border as string;
+  useGHLScript();
+  const iframeHeight = useIframeHeight(GHL_IFRAME_ID, 700);
 
   return (
     <section
@@ -116,9 +100,9 @@ export default function BookSection() {
               marginBottom: "0.75rem",
             }}
           >
-            Tell me what's broken.
+            Help me debug.
             <br />
-            <span style={{ color: "#ff8200" }}>I'll reach back out.</span>
+            <span style={{ color: "#ff8200" }}>Let's fix it.</span>
           </h2>
           <p
             style={{
@@ -129,11 +113,11 @@ export default function BookSection() {
               maxWidth: "520px",
             }}
           >
-            Drop your details and describe the bug. No pitch, no pressure — just a real conversation about what's holding you back and how to fix it. I'll follow up within 24 hours.
+            Tell me what's broken. No sales pitch, no pressure. We'll review your current stack, identify the bottlenecks, and map out a roadmap. If we're a fit, great. If not, you'll still walk away with actionable insights.
           </p>
         </div>
 
-        {/* Two-column layout: contact form | YAML spec + agenda */}
+        {/* Two-column layout: GHL form iframe | YAML spec + agenda */}
         <div
           style={{
             display: "grid",
@@ -142,7 +126,7 @@ export default function BookSection() {
           }}
           className="book-grid-2col"
         >
-          {/* ── Col 1: Contact Form ── */}
+          {/* ── Col 1: GHL Form Widget ── */}
           <div
             style={{
               opacity: visible ? 1 : 0,
@@ -164,193 +148,24 @@ export default function BookSection() {
                 <div className="terminal-dot" style={{ backgroundColor: "#ffbd2e" }} />
                 <div className="terminal-dot" style={{ backgroundColor: "#27c93f" }} />
                 <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.7rem", color: "#8a8f96", marginLeft: "0.5rem" }}>
-                  $ submit --debug-report
+                  $ debug --init
                 </span>
               </div>
 
-              <div style={{ padding: "1.75rem" }}>
-                {formState === "success" ? (
-                  /* ── Success state ── */
-                  <div style={{ textAlign: "center", padding: "2rem 0" }}>
-                    <div
-                      style={{
-                        fontFamily: "'JetBrains Mono', monospace",
-                        fontSize: "0.75rem",
-                        color: "#4ade80",
-                        marginBottom: "1rem",
-                        letterSpacing: "0.05em",
-                      }}
-                    >
-                      ✓ commit logged
-                    </div>
-                    <h3
-                      style={{
-                        fontFamily: "'Barlow Condensed', sans-serif",
-                        fontWeight: 900,
-                        fontSize: "1.75rem",
-                        textTransform: "uppercase",
-                        color: "#f0ede8",
-                        marginBottom: "0.75rem",
-                      }}
-                    >
-                      Commit logged.
-                    </h3>
-                    <p
-                      style={{
-                        fontFamily: "'Space Grotesk', sans-serif",
-                        fontSize: "0.9rem",
-                        color: "#b0aca6",
-                        lineHeight: 1.7,
-                        maxWidth: "340px",
-                        margin: "0 auto",
-                      }}
-                    >
-                      This is v0.1 of the new build. I'll be in touch within 24 hours. Come ready to talk honestly about what's broken — that's where the fix starts.
-                    </p>
-                  </div>
-                ) : (
-                  /* ── Form ── */
-                  <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: "1.25rem" }}>
-                    {/* Name */}
-                    <div>
-                      <label htmlFor="name" style={labelStyle}>name *</label>
-                      <input
-                        id="name"
-                        name="name"
-                        type="text"
-                        required
-                        placeholder="Your name"
-                        value={fields.name}
-                        onChange={handleChange}
-                        onFocus={() => setFocusedField("name")}
-                        onBlur={() => setFocusedField(null)}
-                        style={{ ...inputStyle, border: getFocusBorder("name") }}
-                      />
-                    </div>
-
-                    {/* Email */}
-                    <div>
-                      <label htmlFor="email" style={labelStyle}>email *</label>
-                      <input
-                        id="email"
-                        name="email"
-                        type="email"
-                        required
-                        placeholder="you@company.com"
-                        value={fields.email}
-                        onChange={handleChange}
-                        onFocus={() => setFocusedField("email")}
-                        onBlur={() => setFocusedField(null)}
-                        style={{ ...inputStyle, border: getFocusBorder("email") }}
-                      />
-                    </div>
-
-                    {/* Phone — optional */}
-                    <div>
-                      <label htmlFor="phone" style={labelStyle}>
-                        phone <span style={{ color: "#555b63" }}>(optional — for SMS follow-up)</span>
-                      </label>
-                      <input
-                        id="phone"
-                        name="phone"
-                        type="tel"
-                        placeholder="+1 (555) 000-0000"
-                        value={fields.phone}
-                        onChange={handleChange}
-                        onFocus={() => setFocusedField("phone")}
-                        onBlur={() => setFocusedField(null)}
-                        style={{ ...inputStyle, border: getFocusBorder("phone") }}
-                      />
-                      {/* SMS consent — only shown when phone has content */}
-                      {fields.phone.trim().length > 0 && (
-                        <label
-                          htmlFor="sms-consent"
-                          style={{
-                            display: "flex",
-                            alignItems: "flex-start",
-                            gap: "0.6rem",
-                            marginTop: "0.65rem",
-                            cursor: "pointer",
-                          }}
-                        >
-                          <input
-                            id="sms-consent"
-                            type="checkbox"
-                            checked={smsConsent}
-                            onChange={e => setSmsConsent(e.target.checked)}
-                            style={{
-                              marginTop: "2px",
-                              accentColor: "#ff8200",
-                              flexShrink: 0,
-                              width: "14px",
-                              height: "14px",
-                              cursor: "pointer",
-                            }}
-                          />
-                          <span
-                            style={{
-                              fontFamily: "'Space Grotesk', sans-serif",
-                              fontSize: "0.75rem",
-                              color: "#8a8f96",
-                              lineHeight: 1.55,
-                            }}
-                          >
-                            By sharing your number, you're opting in to receive non-marketing texts (things like session reminders and follow-up notes) from Philip Z / CPZ Fitness. Message &amp; data rates may apply. Reply STOP at any time to opt out.
-                          </span>
-                        </label>
-                      )}
-                    </div>
-
-                    {/* Debug issue */}
-                    <div>
-                      <label htmlFor="issue" style={labelStyle}>
-                        describe the bug. what's broken and how long has it been broken? *
-                      </label>
-                      <textarea
-                        id="issue"
-                        name="issue"
-                        required
-                        rows={5}
-                        placeholder="Be specific. The more honest you are here, the more useful our conversation will be."
-                        value={fields.issue}
-                        onChange={handleChange}
-                        onFocus={() => setFocusedField("issue")}
-                        onBlur={() => setFocusedField(null)}
-                        style={{
-                          ...inputStyle,
-                          border: getFocusBorder("issue"),
-                          resize: "vertical",
-                          minHeight: "120px",
-                        }}
-                      />
-                    </div>
-
-                    {/* Submit */}
-                    <button
-                      type="submit"
-                      disabled={formState === "submitting"}
-                      className="btn-primary"
-                      style={{
-                        justifyContent: "center",
-                        opacity: formState === "submitting" ? 0.7 : 1,
-                        cursor: formState === "submitting" ? "not-allowed" : "pointer",
-                      }}
-                    >
-                      {formState === "submitting" ? (
-                        <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.85rem" }}>
-                          pushing commit...
-                        </span>
-                      ) : (
-                        "Submit Debug Report →"
-                      )}
-                    </button>
-
-                    <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.68rem", color: "#555b63", textAlign: "center", margin: 0 }}>
-                      I'll follow up within 24 hours. No pitch. No pressure.
-                    </p>
-                  </form>
-                )}
-              </div>
+              {/* GHL Form Widget — height grows dynamically via postMessage */}
+              <iframe
+                src="https://api.leadconnectorhq.com/widget/form/Hiu3h6YoF9aNPhtcAgfR"
+                style={{
+                  width: "100%",
+                  border: "none",
+                  overflow: "hidden",
+                  display: "block",
+                  height: `${iframeHeight}px`,
+                  transition: "height 0.3s ease",
+                }}
+                scrolling="no"
+                id={GHL_IFRAME_ID}
+              />
             </div>
           </div>
 
