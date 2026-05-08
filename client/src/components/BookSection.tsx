@@ -100,9 +100,9 @@ export default function BookSection() {
               marginBottom: "0.75rem",
             }}
           >
-            Help me audit.
+            Free Stack Audit.
             <br />
-            <span style={{ color: "#ff8200" }}>Let's fix it.</span>
+            <span style={{ color: "#ff8200" }}>Let's Fit It.</span>
           </h2>
           <p
             style={{
