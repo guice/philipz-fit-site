@@ -122,7 +122,7 @@ export default function CommunitySection() {
                 transition: "opacity 0.6s ease 0.1s, transform 0.6s ease 0.1s",
               }}
             >
-              Stop debugging
+              Stop spinning
               <br />
               <span style={{ color: "#ff8200" }}>alone.</span>
             </h2>
@@ -326,7 +326,7 @@ export default function CommunitySection() {
             >
               // spartan race finisher
               <br />
-              // the result of a debugged system
+              // the result of an audited system
             </div>
 
             {/* Orange accent line */}

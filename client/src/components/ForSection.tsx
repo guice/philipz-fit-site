@@ -23,7 +23,7 @@ const painPoints = [
   {
     icon: "💻",
     title: "You're the smartest guy in the room",
-    body: "You've optimized your IDE, your home network, your coffee setup. Your body is the one system you haven't debugged yet.",
+    body: "You've optimized your IDE, your home network, your coffee setup. Your body is the one system you haven't audited yet — and it's the foundation everything else is built on.",
   },
   {
     icon: "🔁",
@@ -182,7 +182,7 @@ export default function ForSection() {
             </p>
           </div>
           <a href="#book" className="btn-primary">
-            Let's Debug It →
+            Let's Audit It →
           </a>
         </div>
       </div>

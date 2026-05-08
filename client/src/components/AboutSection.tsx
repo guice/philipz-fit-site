@@ -40,7 +40,7 @@ const gitLog = [
   { hash: "d4e5f6g", message: "Lived online — no real-world XP, just isolation", tag: null, tagColor: "", tagBg: "" },
   { hash: "e5f6g7h", message: "Found a trainer — first time someone handed me a spec", tag: "v1.0", tagColor: "#ef4444", tagBg: "rgba(239,68,68,0.12)" },
   { hash: "f6g7h8i", message: "Ventured solo — learned progressive overload the hard way", tag: "v1.5", tagColor: "#8a8f96", tagBg: "rgba(255,255,255,0.08)" },
-  { hash: "g7h8i9j", message: "10 years of trial, error, and relentless debugging", tag: null, tagColor: "", tagBg: "" },
+  { hash: "g7h8i9j", message: "10 years of trial, error, and relentless refinement", tag: null, tagColor: "", tagBg: "" },
   { hash: "h8i9j0k", message: "Crossed the finish line — Spartan & Tough Mudder finisher", tag: "v2.0", tagColor: "#8a8f96", tagBg: "rgba(255,255,255,0.08)" },
   { hash: "i9j0k1l", message: "Launched Geek 2 Greek — helping engineers level up", tag: "latest", tagColor: "#0f1012", tagBg: "#ff8200" },
 ];
@@ -310,10 +310,10 @@ export default function AboutSection() {
                 I became a software engineer and got good at it. But outside of work, I retreated online. No social circle. No real-world XP. Just isolation — and a body that hadn't changed since high school.
               </p>
               <p style={{ marginBottom: "1rem" }}>
-                A trainer handed me my first real spec. I followed it, saw results, then ventured solo — ten years of trial, error, and relentless debugging until I finally understood how the system worked. I completed Spartan and Tough Mudder races I couldn't have finished before, and ultimately built the body I was told I couldn't have.
+                A trainer handed me my first real spec. I followed it, saw results, then ventured solo — ten years of trial, error, and relentless refinement until I finally understood how the system worked. I completed Spartan and Tough Mudder races I couldn't have finished before, and ultimately built the body I was told I couldn't have — the foundation of becoming complete.
               </p>
               <p>
-                Now I help my fellow engineers stuck in the same loop. You don't need another generic plan. You need someone who speaks your language, understands your constraints, and has already debugged the exact system you're trying to fix.
+                Now I help my fellow engineers stuck in the same loop. We don't need another generic plan. We need someone who speaks our language, understands our constraints, and has already audited the exact system we're trying to fix — so we can build the complete version of ourselves.
               </p>
             </div>
 

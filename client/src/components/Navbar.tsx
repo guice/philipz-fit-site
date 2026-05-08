@@ -21,7 +21,7 @@ export default function Navbar() {
     { label: "About", href: "#about" },
     { label: "The Pipeline", href: "#pipeline" },
     { label: "Community", href: "#community" },
-    { label: "Help me debug", href: "#book", primary: true },
+    { label: "Help me audit", href: "#book", primary: true },
   ];
 
   return (

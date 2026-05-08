@@ -100,7 +100,7 @@ export default function BookSection() {
               marginBottom: "0.75rem",
             }}
           >
-            Help me debug.
+            Help me audit.
             <br />
             <span style={{ color: "#ff8200" }}>Let's fix it.</span>
           </h2>
@@ -149,7 +149,7 @@ export default function BookSection() {
                 <div className="terminal-dot" style={{ backgroundColor: "#ffbd2e" }} />
                 <div className="terminal-dot" style={{ backgroundColor: "#27c93f" }} />
                 <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.7rem", color: "#8a8f96", marginLeft: "0.5rem" }}>
-                  $ debug --init
+                  $ audit --init
                 </span>
               </div>
 
