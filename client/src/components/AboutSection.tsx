@@ -10,7 +10,7 @@ import { PrideFlag } from "./PrideFlag";
 const ABOUT_BG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663284143252/3AM5HcyaoCtGK7Q72bwxDY/cpz-about-texture-9cXjDdyAxrXjZ2xLPyS6nd.webp";
 
 // Philip's actual portrait photo from Cloudinary
-const PHILIP_PHOTO = "https://res.cloudinary.com/dzjucinkn/image/upload/q_auto/f_auto/v1776802756/philip-portrait_wci9vg.png";
+const PHILIP_PHOTO = "https://res.cloudinary.com/dzjucinkn/image/upload/q_auto/f_auto/v1778523172/philip-portrait_wci9vg.png";
 
 // Faded gym background for depth behind portrait
 const GYM_BG = "https://res.cloudinary.com/dzjucinkn/image/upload/q_auto/f_auto/v1776806680/mohamed-fareed-rbSNsoXk-3A-unsplash_t8ba3h.jpg";
