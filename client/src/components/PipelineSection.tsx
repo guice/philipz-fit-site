@@ -108,6 +108,20 @@ export default function PipelineSection() {
           pointerEvents: "none",
         }}
       />
+      {/* Orange glow — left side */}
+      <div
+        style={{
+          position: "absolute",
+          left: "-200px",
+          top: "50%",
+          transform: "translateY(-50%)",
+          width: "600px",
+          height: "600px",
+          borderRadius: "50%",
+          background: "radial-gradient(circle, rgba(255,130,0,0.07) 0%, transparent 65%)",
+          pointerEvents: "none",
+        }}
+      />
 
       <div className="container" style={{ position: "relative", zIndex: 1 }}>
         {/* Header */}

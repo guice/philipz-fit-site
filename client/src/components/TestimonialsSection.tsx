@@ -53,9 +53,24 @@ export default function TestimonialsSection() {
         backgroundColor: "#0f1012",
         padding: "6rem 0",
         borderTop: "1px solid rgba(255,255,255,0.04)",
+        position: "relative",
+        overflow: "hidden",
       }}
     >
-      <div className="container">
+      {/* Orange glow — top center */}
+      <div
+        style={{
+          position: "absolute",
+          top: "-80px",
+          left: "50%",
+          transform: "translateX(-50%)",
+          width: "700px",
+          height: "400px",
+          background: "radial-gradient(ellipse at center, rgba(255,130,0,0.08) 0%, transparent 70%)",
+          pointerEvents: "none",
+        }}
+      />
+      <div className="container" style={{ position: "relative", zIndex: 1 }}>
         {/* Header */}
         <div
           style={{

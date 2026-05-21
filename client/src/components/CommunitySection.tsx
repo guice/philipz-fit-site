@@ -71,6 +71,20 @@ export default function CommunitySection() {
         overflow: "hidden",
       }}
     >
+      {/* Orange glow — right side */}
+      <div
+        style={{
+          position: "absolute",
+          right: "-200px",
+          top: "50%",
+          transform: "translateY(-50%)",
+          width: "600px",
+          height: "600px",
+          borderRadius: "50%",
+          background: "radial-gradient(circle, rgba(255,130,0,0.06) 0%, transparent 65%)",
+          pointerEvents: "none",
+        }}
+      />
       {/* Two-column grid: content left, photo right — constrained to site max-width */}
       <div style={{ maxWidth: "1280px", margin: "0 auto", width: "100%" }}>
       <div

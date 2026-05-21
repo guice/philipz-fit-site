@@ -76,9 +76,25 @@ export default function BookSection() {
         backgroundColor: "#1a1d21",
         padding: "7rem 0",
         borderTop: "1px solid rgba(255, 130, 0, 0.12)",
+        position: "relative",
+        overflow: "hidden",
       }}
     >
-      <div className="container">
+      {/* Orange glow — right side */}
+      <div
+        style={{
+          position: "absolute",
+          right: "-200px",
+          top: "50%",
+          transform: "translateY(-50%)",
+          width: "600px",
+          height: "600px",
+          borderRadius: "50%",
+          background: "radial-gradient(circle, rgba(255,130,0,0.07) 0%, transparent 65%)",
+          pointerEvents: "none",
+        }}
+      />
+      <div className="container" style={{ position: "relative", zIndex: 1 }}>
         {/* Section header */}
         <div
           style={{
