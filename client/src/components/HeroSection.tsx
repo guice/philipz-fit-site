@@ -60,7 +60,21 @@ export default function HeroSection() {
           zIndex: 2,
         }}
       />
-      {/* Orange glow accent */}
+      {/* Orange glow — top center (hero signature) */}
+      <div
+        style={{
+          position: "absolute",
+          top: "-100px",
+          left: "50%",
+          transform: "translateX(-50%)",
+          width: "700px",
+          height: "500px",
+          background: "radial-gradient(ellipse at center, rgba(255,130,0,0.10) 0%, transparent 70%)",
+          pointerEvents: "none",
+          zIndex: 1,
+        }}
+      />
+      {/* Orange glow — bottom right accent */}
       <div
         style={{
           position: "absolute",
@@ -69,7 +83,7 @@ export default function HeroSection() {
           width: "500px",
           height: "500px",
           borderRadius: "50%",
-          background: "radial-gradient(circle, rgba(255,130,0,0.06) 0%, transparent 70%)",
+          background: "radial-gradient(circle, rgba(255,130,0,0.07) 0%, transparent 70%)",
           pointerEvents: "none",
           zIndex: 1,
         }}

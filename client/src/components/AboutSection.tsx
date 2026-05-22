@@ -71,6 +71,20 @@ export default function AboutSection() {
           opacity: 0.04,
         }}
       />
+      {/* Orange glow — left side */}
+      <div
+        style={{
+          position: "absolute",
+          left: "-150px",
+          top: "50%",
+          transform: "translateY(-50%)",
+          width: "500px",
+          height: "500px",
+          borderRadius: "50%",
+          background: "radial-gradient(circle, rgba(255,130,0,0.07) 0%, transparent 70%)",
+          pointerEvents: "none",
+        }}
+      />
 
       <div className="container" style={{ position: "relative", zIndex: 1 }}>
         <div
