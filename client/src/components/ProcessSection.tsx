@@ -5,7 +5,8 @@
    ========================================================================== */
 
 // Toggles the Confidence Guarantee callout card.
-const SHOW_GUARANTEE = true;
+// Off: the guarantee lives in the program documents, not on the site.
+const SHOW_GUARANTEE = false;
 
 const phaseCards = [
   {
