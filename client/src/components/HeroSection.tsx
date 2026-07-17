@@ -118,7 +118,7 @@ export default function HeroSection() {
               transform: visible ? "translateY(0)" : "translateY(24px)",
               transition: "opacity 0.6s ease 0.1s, transform 0.6s ease 0.1s",
               textTransform: "uppercase",
-              lineHeight: 0.9,
+              lineHeight: 0.8,
             }}
           >
             {copy.line1}
@@ -131,16 +131,12 @@ export default function HeroSection() {
                   fontFamily: "'League Spartan', sans-serif",
                   fontWeight: 900,
                   fontSize: "clamp(5rem, 7vw, 7.25rem)",
-                  display: "inline-block",
-                  position: "relative",
-                  top: "-0.16em",
                   lineHeight: 0.5,
                 }}
               >
                 {copy.line2Highlight}
               </span>
             )}
-            {copy.line2Post && <span style={{ color: "#ff8c00" }}>{copy.line2Post}</span>}
           </h1>
 
           {/* Sub-headline */}
