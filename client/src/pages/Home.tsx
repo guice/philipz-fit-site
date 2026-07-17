@@ -1,5 +1,5 @@
 /* ==========================================================================
-   HOME PAGE — CPZ Fitness "Spartan Engineer" design
+   HOME PAGE — CPZ Fitness (new ICA rebrand)
    Assembles all sections in conversion-optimized order
    ========================================================================== */
 
@@ -8,23 +8,21 @@ import HeroSection from "@/components/HeroSection";
 import StatsBar from "@/components/StatsBar";
 import ForSection from "@/components/ForSection";
 import AboutSection from "@/components/AboutSection";
-import PipelineSection from "@/components/PipelineSection";
-import CommunitySection from "@/components/CommunitySection";
+import ProcessSection from "@/components/ProcessSection";
 // import TestimonialsSection from "@/components/TestimonialsSection"; // hidden until real testimonials are ready
 import BookSection from "@/components/BookSection";
 import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
-    <div style={{ backgroundColor: "#0f1012", minHeight: "100vh" }}>
+    <div style={{ backgroundColor: "#121316", minHeight: "100vh" }}>
       <Navbar />
       <HeroSection />
       <StatsBar />
       <ForSection />
       <AboutSection />
-      <PipelineSection />
+      <ProcessSection />
       {/* <TestimonialsSection /> — hidden until real client testimonials are available */}
-      <CommunitySection />
       <BookSection />
       <Footer />
     </div>

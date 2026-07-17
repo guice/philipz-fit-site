@@ -1,71 +1,45 @@
 /* ==========================================================================
-   FOR SECTION — CPZ Fitness "Spartan Engineer" design
-   ICP targeting: "This is for you if..." — speaks directly to the pain points
+   FOR SECTION — CPZ Fitness (new ICA rebrand)
+   "Sound familiar?" — six pain-point cards + CTA banner
    ========================================================================== */
-
-import { useEffect, useRef, useState } from "react";
-
-function useVisible(threshold = 0.2) {
-  const ref = useRef<HTMLDivElement>(null);
-  const [visible, setVisible] = useState(false);
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) { setVisible(true); observer.disconnect(); } },
-      { threshold }
-    );
-    if (ref.current) observer.observe(ref.current);
-    return () => observer.disconnect();
-  }, [threshold]);
-  return { ref, visible };
-}
 
 const painPoints = [
   {
-    icon: "💻",
-    title: "You're the smartest guy in the room",
-    body: "You've optimized your IDE, your home network, your coffee setup. Your body is the one system you haven't audited yet — and it's the foundation everything else is built on.",
+    number: "01",
+    title: "You did the hard part already",
+    body: "Coming out took real courage. Somehow the body still feels like unfinished business.",
   },
   {
-    icon: "🔁",
-    title: "You keep respawning at the same checkpoint",
-    body: "You've started three times. Maybe six. You know the theory. The execution loop is broken somewhere and you can't find the bug.",
+    number: "02",
+    title: "You dread shirtless season",
+    body: "Pools, beaches, bedrooms — you've gotten good at staying covered.",
   },
   {
-    icon: "🏋️",
-    title: "The gym feels like a foreign codebase",
-    body: "Everyone else seems to know the syntax. You walk in with no spec, no tests, and no idea what you're supposed to be building.",
+    number: "03",
+    title: "The apps make it worse",
+    body: "Comparing yourself to a feed built for comparison isn't something you scroll your way out of.",
   },
   {
-    icon: "📊",
-    title: "You over-research, under-execute",
-    body: "You've read 42 Reddit threads on optimal training splits. You still haven't committed a single rep. Analysis paralysis is a real bug.",
+    number: "04",
+    title: "You start strong, then stop",
+    body: "Three weeks in, motivation drops and so do you. That's not a willpower problem.",
   },
   {
-    icon: "🪞",
-    title: "You feel skinny-fat and don't know why",
-    body: "Not obese. Not fit. Soft in the middle, no muscle definition, and somehow both under-eating and over-eating at the same time.",
+    number: "05",
+    title: "The gym feels like someone else's space",
+    body: "Nobody handed you the unwritten rules, so you avoid the free weights — or the gym entirely.",
   },
   {
-    icon: "🎯",
-    title: "You want to feel confident, not just healthy",
-    body: "The real goal isn't abs. It's walking into a room and feeling like the person you know you're capable of being.",
+    number: "06",
+    title: "You want confidence, not just abs",
+    body: "The real goal was never a six-pack. Ever. It was walking into a room without running a script in your head.",
   },
 ];
 
 export default function ForSection() {
-  const { ref, visible } = useVisible();
-
   return (
-    <section
-      ref={ref}
-      style={{
-        backgroundColor: "#0f1012",
-        padding: "6rem 0",
-        position: "relative",
-        overflow: "hidden",
-      }}
-    >
-      {/* Orange glow — right side */}
+    <section id="for" style={{ padding: "7rem 0", position: "relative", overflow: "hidden" }}>
+      {/* Soft orange glow, right side */}
       <div
         style={{
           position: "absolute",
@@ -75,130 +49,123 @@ export default function ForSection() {
           width: "500px",
           height: "500px",
           borderRadius: "50%",
-          background: "radial-gradient(circle, rgba(255,130,0,0.05) 0%, transparent 70%)",
+          background: "radial-gradient(circle, rgba(255,140,0,0.05) 0%, transparent 70%)",
           pointerEvents: "none",
         }}
       />
-      <div className="container" style={{ position: "relative", zIndex: 1 }}>
-        {/* Header */}
-        <div
-          style={{
-            marginBottom: "3.5rem",
-            opacity: visible ? 1 : 0,
-            transform: visible ? "translateY(0)" : "translateY(24px)",
-            transition: "opacity 0.6s ease, transform 0.6s ease",
-          }}
-        >
-          <div className="section-label">// who.this.is.for()</div>
-          <h2
+      <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "0 1.5rem", position: "relative", zIndex: 1 }}>
+        <div style={{ marginBottom: "3.5rem" }}>
+          <div
             style={{
-              fontFamily: "'Barlow Condensed', sans-serif",
-              fontWeight: 900,
-              fontSize: "clamp(2.5rem, 5vw, 4rem)",
+              fontFamily: "'Poppins', sans-serif",
+              fontSize: "0.78rem",
+              fontWeight: 600,
+              letterSpacing: "0.15em",
               textTransform: "uppercase",
-              color: "#f0ede8",
-              lineHeight: 1,
-              maxWidth: "600px",
+              color: "#ff8c00",
+              marginBottom: "1rem",
             }}
           >
             Sound familiar?
+          </div>
+          <h2
+            style={{
+              fontFamily: "'Schibsted Grotesk', sans-serif",
+              fontWeight: 700,
+              fontSize: "clamp(2.25rem, 5vw, 3.75rem)",
+              color: "#eceef0",
+              lineHeight: 1.05,
+              margin: 0,
+              maxWidth: "640px",
+            }}
+          >
+            You're not
             <br />
-            <span style={{ color: "#ff8200" }}>You're in the right place.</span>
+            <span style={{ color: "#ff8c00" }}>the only one.</span>
           </h2>
         </div>
 
-        {/* Pain point grid */}
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
-            gap: "1.25rem",
-          }}
-        >
-          {painPoints.map((point, i) => (
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: "1.25rem" }}>
+          {painPoints.map((point) => (
             <div
-              key={i}
+              key={point.number}
               style={{
-                backgroundColor: "#1a1d21",
-                border: "1px solid rgba(255,255,255,0.06)",
+                background: "#1e2023",
+                border: "1px solid rgba(255,140,0,0.12)",
                 borderRadius: "4px",
                 padding: "1.75rem",
-                opacity: visible ? 1 : 0,
-                transform: visible ? "translateY(0)" : "translateY(24px)",
-                transition: `opacity 0.6s ease ${i * 0.08}s, transform 0.6s ease ${i * 0.08}s`,
               }}
             >
-              <div style={{ fontSize: "1.75rem", marginBottom: "0.875rem" }}>{point.icon}</div>
+              <div
+                style={{
+                  fontFamily: "'Poppins', sans-serif",
+                  fontSize: "0.75rem",
+                  fontWeight: 600,
+                  color: "#ff8c00",
+                  marginBottom: "0.875rem",
+                }}
+              >
+                {point.number}
+              </div>
               <h3
                 style={{
-                  fontFamily: "'Space Grotesk', sans-serif",
-                  fontWeight: 700,
-                  fontSize: "1rem",
-                  color: "#f0ede8",
-                  marginBottom: "0.625rem",
+                  fontFamily: "'Schibsted Grotesk', sans-serif",
+                  fontWeight: 600,
+                  fontSize: "1.1rem",
+                  color: "#eceef0",
+                  margin: "0 0 0.625rem",
                   lineHeight: 1.3,
                 }}
               >
                 {point.title}
               </h3>
-              <p
-                style={{
-                  fontFamily: "'Space Grotesk', sans-serif",
-                  fontSize: "0.9rem",
-                  color: "#8a8f96",
-                  lineHeight: 1.65,
-                  margin: 0,
-                }}
-              >
+              <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.92rem", color: "#aeb2b8", lineHeight: 1.65, margin: 0 }}>
                 {point.body}
               </p>
             </div>
           ))}
         </div>
 
-        {/* Bottom CTA nudge */}
+        {/* CTA banner */}
         <div
           style={{
             marginTop: "3rem",
             padding: "2rem",
-            backgroundColor: "#1a1d21",
-            border: "1px solid rgba(255, 130, 0, 0.2)",
+            background: "#1e2023",
+            border: "1px solid rgba(255,140,0,0.2)",
             borderRadius: "4px",
             display: "flex",
             flexWrap: "wrap",
             alignItems: "center",
             justifyContent: "space-between",
             gap: "1.5rem",
-            opacity: visible ? 1 : 0,
-            transition: "opacity 0.6s ease 0.5s",
           }}
         >
           <div>
-            <p
-              style={{
-                fontFamily: "'Barlow Condensed', sans-serif",
-                fontWeight: 700,
-                fontSize: "1.4rem",
-                textTransform: "uppercase",
-                color: "#f0ede8",
-                margin: 0,
-              }}
-            >
-              If you checked 3 or more of those boxes —
+            <p style={{ fontFamily: "'Schibsted Grotesk', sans-serif", fontWeight: 700, fontSize: "1.3rem", color: "#eceef0", margin: 0 }}>
+              If a few of those landed —
             </p>
-            <p
-              style={{
-                fontFamily: "'Space Grotesk', sans-serif",
-                fontSize: "0.95rem",
-                color: "#8a8f96",
-                margin: "0.375rem 0 0",
-              }}
-            >
-              you don't have a motivation problem. You have a systems problem. That's fixable.
+            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.95rem", color: "#aeb2b8", margin: "0.375rem 0 0" }}>
+              that's not a motivation problem. That's a pattern. Patterns are fixable.
             </p>
           </div>
-          <a href="#book" className="btn-primary">
-            Let's Audit It →
+          <a
+            href="#book"
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              background: "#ff8c00",
+              color: "#121316",
+              fontFamily: "'Inter', sans-serif",
+              fontWeight: 600,
+              fontSize: "0.95rem",
+              padding: "0.8rem 1.75rem",
+              borderRadius: "14px",
+              textDecoration: "none",
+              whiteSpace: "nowrap",
+            }}
+          >
+            Book a Free Consultation
           </a>
         </div>
       </div>
