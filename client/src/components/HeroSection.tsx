@@ -11,8 +11,8 @@ const HERO_BG =
 
 type HeroVariant = "reclaim" | "mirror" | "seen";
 
-// Shipped default is "reclaim"; "seen" is the variant with the rainbow-highlighted word.
-const HERO_VARIANT: HeroVariant = "reclaim";
+// Shipped default is "seen" — the "Lifting to be seen" tagline with the rainbow-highlighted word.
+const HERO_VARIANT: HeroVariant = "seen";
 
 const HERO_COPY: Record<
   HeroVariant,
