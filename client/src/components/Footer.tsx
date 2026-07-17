@@ -56,14 +56,9 @@ export default function Footer() {
                 <span className="rainbow-text" style={{ fontWeight: 600, textTransform: "uppercase" }}>
                   seen
                 </span>
-                .
               </div>
             </div>
           </div>
-
-          <span title="Proudly serving the gay community" style={{ fontSize: "1.3rem", lineHeight: 1, marginLeft: "0.5rem" }}>
-            🏳️‍🌈
-          </span>
 
           {/* Nav links */}
           <div style={{ display: "flex", gap: "2rem", flexWrap: "wrap" }}>
