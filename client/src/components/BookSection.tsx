@@ -1,40 +1,35 @@
 /* ==========================================================================
-   BOOK SECTION — CPZ Fitness "Spartan Engineer" design
-   GHL form widget (dynamic height via postMessage) | YAML spec + agenda
+   BOOK SECTION — CPZ Fitness (new ICA rebrand)
+   GHL form widget (dynamic height via postMessage) | facts card + agenda.
+   bookingMode 'simple_link' swaps the iframe for a plain link + button.
    ========================================================================== */
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 
-function useVisible(threshold = 0.1) {
-  const ref = useRef<HTMLDivElement>(null);
-  const [visible, setVisible] = useState(false);
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) { setVisible(true); observer.disconnect(); } },
-      { threshold }
-    );
-    if (ref.current) observer.observe(ref.current);
-    return () => observer.disconnect();
-  }, [threshold]);
-  return { ref, visible };
-}
+type BookingMode = "embedded_form" | "simple_link";
+
+const BOOKING_MODE: BookingMode = "embedded_form";
+
+const GHL_IFRAME_ID = "Hiu3h6YoF9aNPhtcAgfR";
 
 // Inject GHL form_embed.js once — it handles iframe auto-resize via postMessage
-function useGHLScript() {
+function useGHLScript(enabled: boolean) {
   useEffect(() => {
+    if (!enabled) return;
     if (document.getElementById("ghl-form-embed-script")) return;
     const script = document.createElement("script");
     script.src = "https://link.msgsndr.com/js/form_embed.js";
     script.type = "text/javascript";
     script.id = "ghl-form-embed-script";
     document.body.appendChild(script);
-  }, []);
+  }, [enabled]);
 }
 
 // Dynamic iframe height — listens for GHL postMessage resize events
-function useIframeHeight(iframeId: string, defaultHeight = 700) {
+function useIframeHeight(iframeId: string, enabled: boolean, defaultHeight = 700) {
   const [height, setHeight] = useState(defaultHeight);
   useEffect(() => {
+    if (!enabled) return;
     function onMessage(e: MessageEvent) {
       if (!e.data || typeof e.data !== "object") return;
       // GHL emits { type: "SET_HEIGHT", value: <px> } or { iframeId, height }
@@ -47,40 +42,31 @@ function useIframeHeight(iframeId: string, defaultHeight = 700) {
     }
     window.addEventListener("message", onMessage);
     return () => window.removeEventListener("message", onMessage);
-  }, [iframeId, defaultHeight]);
+  }, [iframeId, enabled, defaultHeight]);
   return height;
 }
 
-const GHL_IFRAME_ID = "Hiu3h6YoF9aNPhtcAgfR";
+const factsRows = [
+  { key: "Response time", value: "< 24 hours" },
+  { key: "Cost", value: "Free" },
+  { key: "Format", value: "15-min video call" },
+  { key: "Pressure", value: "None" },
+];
 
-const yamlLines = [
-  { key: "response_time",  value: "< 24 hours",          color: "#4ade80" },
-  { key: "cost",           value: "$0",                   color: "#ff8200" },
-  { key: "format",         value: "video call",            color: "#4ade80" },
-  { key: "outcome",        value: "personalized roadmap",  color: "#4ade80" },
-  { key: "commitment",     value: "zero",                  color: "#4ade80" },
-  { key: "bro_science",    value: "false",                 color: "#ef4444" },
-  { key: "sales_pitch",    value: "false",                 color: "#ef4444" },
+const coverList = [
+  { step: "01", text: "Where you're starting — training history, body, and the pattern that's kept you stuck" },
+  { step: "02", text: "How the 16-Week Transformation actually works, phase by phase" },
+  { step: "03", text: "Whether coaching together is the right next step — no pressure either way" },
 ];
 
 export default function BookSection() {
-  const { ref, visible } = useVisible();
-  useGHLScript();
-  const iframeHeight = useIframeHeight(GHL_IFRAME_ID, 700);
+  const isEmbeddedForm = BOOKING_MODE !== "simple_link";
+  useGHLScript(isEmbeddedForm);
+  const iframeHeight = useIframeHeight(GHL_IFRAME_ID, isEmbeddedForm);
 
   return (
-    <section
-      id="book"
-      ref={ref}
-      style={{
-        backgroundColor: "#1a1d21",
-        padding: "7rem 0",
-        borderTop: "1px solid rgba(255, 130, 0, 0.12)",
-        position: "relative",
-        overflow: "hidden",
-      }}
-    >
-      {/* Orange glow — right side */}
+    <section id="book" style={{ padding: "7rem 0", position: "relative", overflow: "hidden" }}>
+      {/* Soft orange glow, right side */}
       <div
         style={{
           position: "absolute",
@@ -90,202 +76,151 @@ export default function BookSection() {
           width: "600px",
           height: "600px",
           borderRadius: "50%",
-          background: "radial-gradient(circle, rgba(255,130,0,0.07) 0%, transparent 65%)",
+          background: "radial-gradient(circle, rgba(255,140,0,0.06) 0%, transparent 65%)",
           pointerEvents: "none",
         }}
       />
-      <div className="container" style={{ position: "relative", zIndex: 1 }}>
-        {/* Section header */}
-        <div
-          style={{
-            marginBottom: "3rem",
-            opacity: visible ? 1 : 0,
-            transform: visible ? "translateY(0)" : "translateY(20px)",
-            transition: "opacity 0.6s ease, transform 0.6s ease",
-          }}
-        >
-          <div className="section-label">// init_consultation()</div>
+      <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "0 1.5rem", position: "relative", zIndex: 1 }}>
+        <div style={{ marginBottom: "3rem" }}>
+          <div
+            style={{
+              fontFamily: "'Poppins', sans-serif",
+              fontSize: "0.78rem",
+              fontWeight: 600,
+              letterSpacing: "0.15em",
+              textTransform: "uppercase",
+              color: "#ff8c00",
+              marginBottom: "1rem",
+            }}
+          >
+            Free Consultation
+          </div>
           <h2
             style={{
-              fontFamily: "'Barlow Condensed', sans-serif",
-              fontWeight: 900,
-              fontSize: "clamp(2.5rem, 4vw, 3.75rem)",
-              textTransform: "uppercase",
-              color: "#f0ede8",
-              lineHeight: 1,
-              marginBottom: "0.75rem",
+              fontFamily: "'Schibsted Grotesk', sans-serif",
+              fontWeight: 700,
+              fontSize: "clamp(2.25rem, 4vw, 3.5rem)",
+              color: "#eceef0",
+              lineHeight: 1.05,
+              margin: "0 0 0.75rem",
             }}
           >
-            Free Stack Audit.
-            <br />
-            <span style={{ color: "#ff8200" }}>Let's Fit It.</span>
+            Let's talk about <span style={{ color: "#ff8c00" }}>what's actually going on.</span>
           </h2>
-          <p
-            style={{
-              fontFamily: "'Space Grotesk', sans-serif",
-              fontSize: "1rem",
-              color: "#b0aca6",
-              lineHeight: 1.75,
-              maxWidth: "520px",
-            }}
-          >
-            Tell me what's broken. No sales pitch, no pressure. We'll review your current stack, identify the bottlenecks, and map out a roadmap. If we're a fit, great. If not, you'll still walk away with actionable insights.
+          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "1rem", color: "#aeb2b8", lineHeight: 1.7, maxWidth: "560px", margin: 0 }}>
+            No sales pitch, no pressure. 15 minutes to talk through where you're starting from and whether coaching together
+            makes sense.
           </p>
         </div>
 
-        {/* Two-column layout: GHL form iframe | YAML spec + agenda */}
-        <div
-          style={{
-            display: "grid",
-            gap: "1.5rem",
-            alignItems: "start",
-          }}
-          className="book-grid-2col"
-        >
-          {/* ── Col 1: GHL Form Widget ── */}
-          <div
-            style={{
-              opacity: visible ? 1 : 0,
-              transform: visible ? "translateX(0)" : "translateX(-24px)",
-              transition: "opacity 0.7s ease 0.1s, transform 0.7s ease 0.1s",
-            }}
-          >
-            <div
-              style={{
-                backgroundColor: "#22262b",
-                border: "1px solid rgba(255, 130, 0, 0.15)",
-                borderRadius: "4px",
-                overflow: "hidden",
-                padding: 0,
-              }}
-            >
-              {/* Terminal header */}
-              <div className="terminal-header">
-                <div className="terminal-dot" style={{ backgroundColor: "#ff5f56" }} />
-                <div className="terminal-dot" style={{ backgroundColor: "#ffbd2e" }} />
-                <div className="terminal-dot" style={{ backgroundColor: "#27c93f" }} />
-                <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.7rem", color: "#8a8f96", marginLeft: "0.5rem" }}>
-                  $ audit --init
-                </span>
-              </div>
-
-              {/* GHL Form Widget — height grows dynamically via postMessage */}
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(340px, 1fr))", gap: "1.5rem", alignItems: "start" }}>
+          {/* Booking widget */}
+          {isEmbeddedForm ? (
+            <div style={{ background: "#1e2023", border: "1px solid rgba(255,140,0,0.15)", borderRadius: "4px", overflow: "hidden" }}>
               <iframe
-                src="https://api.leadconnectorhq.com/widget/form/Hiu3h6YoF9aNPhtcAgfR"
-                style={{
-                  width: "100%",
-                  border: "none",
-                  overflow: "hidden",
-                  display: "block",
-                  height: `${iframeHeight}px`,
-                  transition: "height 0.3s ease",
-                }}
+                src={`https://api.leadconnectorhq.com/widget/form/${GHL_IFRAME_ID}`}
+                style={{ width: "100%", border: "none", display: "block", height: `${iframeHeight}px`, transition: "height 0.3s ease" }}
                 scrolling="no"
                 id={GHL_IFRAME_ID}
+                title="Free Consultation booking form"
               />
             </div>
-          </div>
-
-          {/* ── Col 2: YAML spec + agenda ── */}
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              gap: "1.25rem",
-              opacity: visible ? 1 : 0,
-              transform: visible ? "translateY(0)" : "translateY(24px)",
-              transition: "opacity 0.7s ease 0.2s, transform 0.7s ease 0.2s",
-            }}
-          >
-            {/* YAML spec card */}
-            <div className="terminal-card">
-              <div className="terminal-header">
-                <div className="terminal-dot" style={{ backgroundColor: "#ff5f56" }} />
-                <div className="terminal-dot" style={{ backgroundColor: "#ffbd2e" }} />
-                <div className="terminal-dot" style={{ backgroundColor: "#27c93f" }} />
-                <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.7rem", color: "#8a8f96", marginLeft: "0.5rem" }}>
-                  $ cat consultation.yml
-                </span>
-              </div>
-              <div style={{ padding: "1.1rem 1.25rem" }}>
-                {yamlLines.map((line, i) => (
-                  <div
-                    key={i}
-                    style={{
-                      fontFamily: "'JetBrains Mono', monospace",
-                      fontSize: "0.82rem",
-                      marginBottom: "0.45rem",
-                      display: "flex",
-                      gap: "0.5rem",
-                    }}
-                  >
-                    <span style={{ color: "#8a8f96" }}>{line.key}:</span>
-                    <span style={{ color: line.color }}>{line.value}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* What we'll cover */}
+          ) : (
             <div
               style={{
-                backgroundColor: "#22262b",
-                border: "1px solid rgba(255, 130, 0, 0.12)",
+                background: "#1e2023",
+                border: "1px solid rgba(255,140,0,0.15)",
                 borderRadius: "4px",
-                padding: "1.75rem",
+                padding: "3rem 2rem",
+                textAlign: "center",
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                gap: "1.25rem",
               }}
             >
+              <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "1rem", color: "#aeb2b8", margin: 0, maxWidth: "360px" }}>
+                Book a 15-minute call — no forms to fill out here.
+              </p>
+              <a
+                href="https://lnk.philipz.fit/free-consult"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  background: "#ff8c00",
+                  color: "#121316",
+                  fontFamily: "'Inter', sans-serif",
+                  fontWeight: 600,
+                  fontSize: "1rem",
+                  padding: "0.9rem 2.25rem",
+                  borderRadius: "14px",
+                  textDecoration: "none",
+                }}
+              >
+                Free Consultation
+              </a>
+            </div>
+          )}
+
+          {/* Facts + agenda */}
+          <div style={{ display: "flex", flexDirection: "column", gap: "1.25rem" }}>
+            <div style={{ background: "#1e2023", border: "1px solid rgba(255,140,0,0.12)", borderRadius: "4px", padding: "1.5rem 1.75rem" }}>
+              {factsRows.map((fact) => (
+                <div
+                  key={fact.key}
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    gap: "1rem",
+                    fontFamily: "'Poppins', sans-serif",
+                    fontSize: "0.82rem",
+                    padding: "0.4rem 0",
+                  }}
+                >
+                  <span style={{ color: "#aeb2b8" }}>{fact.key}</span>
+                  <span style={{ color: "#ff8c00", fontWeight: 600 }}>{fact.value}</span>
+                </div>
+              ))}
+            </div>
+
+            <div style={{ background: "#1e2023", border: "1px solid rgba(255,140,0,0.12)", borderRadius: "4px", padding: "1.75rem" }}>
               <h3
                 style={{
-                  fontFamily: "'Barlow Condensed', sans-serif",
-                  fontWeight: 800,
-                  fontSize: "1.15rem",
-                  textTransform: "uppercase",
-                  color: "#f0ede8",
-                  marginBottom: "1.25rem",
-                  letterSpacing: "0.05em",
+                  fontFamily: "'Schibsted Grotesk', sans-serif",
+                  fontWeight: 600,
+                  fontSize: "1.05rem",
+                  color: "#eceef0",
+                  margin: "0 0 1.25rem",
                 }}
               >
                 What we'll cover
               </h3>
-              {[
-                { step: "01", text: "Audit your current training, nutrition, and sleep habits" },
-                { step: "02", text: "Identify the specific bottleneck that's keeping you stuck" },
-                { step: "03", text: "Map out a 90-day roadmap tailored to your schedule and goals" },
-                { step: "04", text: "Decide together if 1:1 coaching is the right next step" },
-              ].map((item, i) => (
+              {coverList.map((item) => (
                 <div
-                  key={i}
+                  key={item.step}
                   style={{
                     display: "flex",
                     gap: "1rem",
-                    marginBottom: i < 3 ? "1rem" : 0,
-                    paddingBottom: i < 3 ? "1rem" : 0,
-                    borderBottom: i < 3 ? "1px solid rgba(255,255,255,0.05)" : "none",
+                    marginBottom: "1rem",
+                    paddingBottom: "1rem",
+                    borderBottom: "1px solid rgba(255,140,0,0.08)",
                   }}
                 >
                   <div
                     style={{
-                      fontFamily: "'Barlow Condensed', sans-serif",
-                      fontWeight: 900,
-                      fontSize: "1.2rem",
-                      color: "#ff8200",
+                      fontFamily: "'Schibsted Grotesk', sans-serif",
+                      fontWeight: 700,
+                      fontSize: "1.1rem",
+                      color: "#ff8c00",
                       flexShrink: 0,
-                      lineHeight: 1.3,
-                      minWidth: "2rem",
+                      minWidth: "1.75rem",
                     }}
                   >
                     {item.step}
                   </div>
-                  <p
-                    style={{
-                      fontFamily: "'Space Grotesk', sans-serif",
-                      fontSize: "0.9rem",
-                      color: "#b0aca6",
-                      lineHeight: 1.65,
-                      margin: 0,
-                    }}
-                  >
+                  <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.88rem", color: "#aeb2b8", lineHeight: 1.6, margin: 0 }}>
                     {item.text}
                   </p>
                 </div>
