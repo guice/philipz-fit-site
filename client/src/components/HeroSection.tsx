@@ -9,36 +9,12 @@ import { useEffect, useState } from "react";
 const HERO_BG =
   "https://res.cloudinary.com/dzjucinkn/image/upload/q_auto/f_auto/v1776806680/mohamed-fareed-rbSNsoXk-3A-unsplash_t8ba3h.jpg";
 
-type HeroVariant = "reclaim" | "mirror" | "seen";
-
-// Shipped default is "seen" — the "Lifting to be seen" tagline with the rainbow-highlighted word.
-const HERO_VARIANT: HeroVariant = "seen";
-
-const HERO_COPY: Record<
-  HeroVariant,
-  { line1: string; line2Pre: string; line2Highlight: string; line2Post: string; sub: string }
-> = {
-  reclaim: {
-    line1: "You already did the hardest identity work there is.",
-    line2Pre: "This part's still unfinished.",
-    line2Highlight: "",
-    line2Post: "",
-    sub: "I help gay men build muscle, lose fat, and stop hiding in a body that doesn't match who they already are. No comparison, no shame spiral — the same honest work that got you out of the closet, now pointed at the mirror.",
-  },
-  mirror: {
-    line1: "Strong enough",
-    line2Pre: "to stop flinching in the mirror.",
-    line2Highlight: "",
-    line2Post: "",
-    sub: "You claimed your identity years ago. I coach gay men through building the muscle, losing the fat, and dropping the habit of hiding that outlived the closet.",
-  },
-  seen: {
-    line1: "Lifting",
-    line2Pre: "to be ",
-    line2Highlight: "seen",
-    line2Post: ".",
-    sub: "I help gay men reclaim themselves — losing fat, building muscle, and revealing the body that commands the room. Not another aesthetic chase. The same honest work that got you out of hiding once.",
-  },
+// "Lifting to be seen" — the shipped headline, with the rainbow-highlighted word.
+const HERO_COPY = {
+  line1: "Lifting",
+  line2Pre: "to be ",
+  line2Highlight: "seen",
+  sub: "I help gay men reclaim themselves — losing fat, building muscle, and revealing the body that commands the room. Not another aesthetic chase. The same honest work that got you out of hiding once.",
 };
 
 export default function HeroSection() {
@@ -49,7 +25,7 @@ export default function HeroSection() {
     return () => clearTimeout(t);
   }, []);
 
-  const copy = HERO_COPY[HERO_VARIANT];
+  const copy = HERO_COPY;
 
   return (
     <section style={{ position: "relative", minHeight: "100vh", display: "flex", alignItems: "center", overflow: "hidden" }}>
