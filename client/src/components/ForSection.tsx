@@ -6,8 +6,8 @@
 const painPoints = [
   {
     number: "01",
-    title: "You did the hard part already",
-    body: "Coming out took real courage. Somehow the body still feels like unfinished business.",
+    title: "The confidence is still catching up",
+    body: "Out or not. Self-accepting or still getting there. The body's the piece that hasn't caught up yet — that's exactly where we start.",
   },
   {
     number: "02",

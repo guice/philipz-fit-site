@@ -17,7 +17,7 @@ const AFTER_PHOTO =
 const aboutStats = [
   { n: "15+", l: "Years Training" },
   { n: "10", l: "Years Out" },
-  { n: "134→175", l: "lb Transformation" },
+  { n: "134→175", l: "Broomstick → Pool Boy" },
 ];
 
 const timelineSteps = [
