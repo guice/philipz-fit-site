@@ -17,32 +17,32 @@ const AFTER_PHOTO =
 const aboutStats = [
   { n: "15+", l: "Years Training" },
   { n: "10", l: "Years Out" },
-  { n: "134→175", l: "lb Transformation" },
+  { n: "134→175", l: "Broomstick → Pool Boy" },
 ];
 
 const timelineSteps = [
   {
     n: "1",
     title: "Hiding",
-    body: "Years of not fully being who I was — including in how I carried myself.",
+    body: "I didn't call it hiding then. I was just underweight and tired of the broomstick in the mirror.",
     hasLine: true,
   },
   {
     n: "2",
-    title: "Building",
-    body: "The training started before I had the confidence to come out.",
+    title: "Unraveling",
+    body: "The more I built, the more I wondered if the person I thought I was — an introverted computer nerd — wasn't the whole story…",
     hasLine: true,
   },
   {
     n: "3",
-    title: "Confidence",
-    body: "Getting stronger changed how I saw myself before it changed how I looked.",
+    title: "Bay Area",
+    body: "Years later, once I landed here, I finally had the confidence to tell myself: \"fuck it; let's dive head first…\"",
     hasLine: true,
   },
   {
     n: "4",
     title: "Coming out",
-    body: "That confidence is what made coming out — and taking my shirt off — possible.",
+    body: "I had to come out to myself, first. After that, everything else was just the next honest stop.",
     hasLine: false,
   },
 ];
@@ -241,27 +241,35 @@ export default function AboutSection() {
                 margin: "0 0 1.5rem",
               }}
             >
-              The training came first. <span style={{ color: "#ff8c00" }}>Coming out came after.</span>
+              Training came first. <span style={{ color: "#ff8c00" }}>Coming out came after.</span>
             </h2>
 
             <div style={{ fontFamily: "'Inter', sans-serif", fontSize: "1rem", color: "#aeb2b8", lineHeight: 1.75, marginBottom: "2rem" }}>
               <p style={{ margin: "0 0 1rem" }}>
-                I started training years before I came out. Not from some grand plan — I just knew I didn't feel like myself,
-                and lifting was the one thing I could actually control.
+                I started lifting to gain weight. Underweight my whole life, broken bones, joint hyper-flexibility, and
+                honestly, I was just tired of seeing a broomstick in the mirror. I wanted to get noticed by dates too. At
+                the time that meant women.
               </p>
               <p style={{ margin: "0 0 1rem" }}>
-                The stronger I got, the more the rest of it started moving. Confidence I hadn't set out to build. By the time I
-                came out — by the time I could take my shirt off without running a calculation first — it wasn't a leap. It was
-                just the next honest thing, after a lot of smaller ones.
+                Confidence wasn't something I was looking for when I started. I thought I already had it. I thought I was
+                who I needed to be, this computer nerd who didn't really talk to people, and that was just me. But as I
+                kept improving, learning, growing, I started realizing I wasn't who I thought I was. Lifting started as a
+                way to get healthier. Then it turned into something else: a way of finding out who I actually was.
               </p>
               <p style={{ margin: "0 0 1rem" }}>
-                I don't think it has to happen in that order. For plenty of guys it's the reverse — the identity work comes
-                first, and the body is what's still catching up. What I know for sure is the two feed each other. You don't
-                need one finished before you start the other.
+                It wasn't until years later, once I landed in the Bay Area, that I finally told myself: fuck it. I was
+                confident enough to say let's try it all, within legal constraints. That's the journey that got me
+                understanding myself, the community, the people in it. That's when I finally came out. I came out to
+                myself first.
+              </p>
+              <p style={{ margin: "0 0 1rem" }}>
+                Health and fitness was never really about aesthetics. It was my vehicle for self-discovery, for
+                self-appreciation.
               </p>
               <p style={{ margin: 0 }}>
-                Now I coach gay men through that same arc, whichever direction it runs for them. Not chasing a six-pack —
-                building the confidence that makes the rest of it possible.
+                That's what I coach now: self-discovery through self-improvement, with fitness as the vehicle, not a
+                six-pack or a number on the scale. Self-appreciation, built the same way I built mine, through the work,
+                because that's the only version that actually holds.
               </p>
             </div>
 

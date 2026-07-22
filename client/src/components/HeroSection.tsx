@@ -14,7 +14,7 @@ const HERO_COPY = {
   line1: "Lifting",
   line2Pre: "to be ",
   line2Highlight: "seen",
-  sub: "I help gay men reclaim themselves — losing fat, building muscle, and revealing the body that commands the room. Not another aesthetic chase. The same honest work that got you out of hiding once.",
+  sub: "I help gay men reclaim themselves: losing fat, building muscle, and revealing a self they can appreciate. Not another aesthetic chase. The same honest work that got you out of hiding once.",
 };
 
 export default function HeroSection() {
@@ -197,7 +197,7 @@ export default function HeroSection() {
               {/* Green checkmark is a deliberate one-off exception to the single-accent rule */}
               <span style={{ color: "rgb(74, 222, 128)", fontSize: "0.8rem" }}>✓</span>
               <span style={{ fontFamily: "'Poppins', sans-serif", fontSize: "0.72rem", color: "#aeb2b8" }}>
-                134 → 175 lb — his own transformation
+                134 → 175 lb — my own transformation
               </span>
             </div>
           </div>
