@@ -197,7 +197,7 @@ export default function HeroSection() {
               {/* Green checkmark is a deliberate one-off exception to the single-accent rule */}
               <span style={{ color: "rgb(74, 222, 128)", fontSize: "0.8rem" }}>✓</span>
               <span style={{ fontFamily: "'Poppins', sans-serif", fontSize: "0.72rem", color: "#aeb2b8" }}>
-                134 → 175 lb — his own transformation
+                134 → 175 lb — my own transformation
               </span>
             </div>
           </div>
