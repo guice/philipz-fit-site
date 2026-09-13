@@ -94,7 +94,7 @@ export default function BookSection() {
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(340px, 1fr))", gap: "1.5rem", alignItems: "start" }}>
           {/* Booking widget */}
           {isEmbeddedForm ? (
-            <div style={{ background: "#1e2023", border: "1px solid rgba(255,140,0,0.15)", borderRadius: "4px", overflow: "hidden", padding: "1.5rem", minHeight: "700px" }}>
+            <div style={{ background: "#1e2023", border: "1px solid rgba(255,140,0,0.15)", borderRadius: "4px", overflow: "hidden", padding: "1.5rem", height: "750px" }}>
               <div id="formflow-embed" data-form-id={FORMFLOW_FORM_ID} />
             </div>
           ) : (
