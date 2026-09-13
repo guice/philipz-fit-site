@@ -1,49 +1,28 @@
 /* ==========================================================================
    BOOK SECTION — CPZ Fitness (new ICA rebrand)
-   GHL form widget (dynamic height via postMessage) | facts card + agenda.
-   bookingMode 'simple_link' swaps the iframe for a plain link + button.
+   FormFlow embed widget (div-target script, self-sizing) | facts card + agenda.
+   bookingMode 'simple_link' swaps the embed for a plain link + button.
    ========================================================================== */
 
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 type BookingMode = "embedded_form" | "simple_link";
 
 const BOOKING_MODE: BookingMode = "embedded_form";
 
-const GHL_IFRAME_ID = "Hiu3h6YoF9aNPhtcAgfR";
+const FORMFLOW_FORM_ID = "9e0388a0-bb27-4b48-9767-a2a8e16cb3d5";
 
-// Inject GHL form_embed.js once — it handles iframe auto-resize via postMessage
-function useGHLScript(enabled: boolean) {
+// Inject FormFlow's widget.js once — it scans the DOM for #formflow-embed and renders into it
+function useFormFlowScript(enabled: boolean) {
   useEffect(() => {
     if (!enabled) return;
-    if (document.getElementById("ghl-form-embed-script")) return;
+    if (document.getElementById("formflow-embed-script")) return;
     const script = document.createElement("script");
-    script.src = "https://link.msgsndr.com/js/form_embed.js";
+    script.src = "https://myformflow.io/embed/widget.js";
     script.type = "text/javascript";
-    script.id = "ghl-form-embed-script";
+    script.id = "formflow-embed-script";
     document.body.appendChild(script);
   }, [enabled]);
-}
-
-// Dynamic iframe height — listens for GHL postMessage resize events
-function useIframeHeight(iframeId: string, enabled: boolean, defaultHeight = 700) {
-  const [height, setHeight] = useState(defaultHeight);
-  useEffect(() => {
-    if (!enabled) return;
-    function onMessage(e: MessageEvent) {
-      if (!e.data || typeof e.data !== "object") return;
-      // GHL emits { type: "SET_HEIGHT", value: <px> } or { iframeId, height }
-      if (e.data.iframeId === iframeId && typeof e.data.height === "number") {
-        setHeight(Math.max(e.data.height, defaultHeight));
-      }
-      if (e.data.type === "SET_HEIGHT" && typeof e.data.value === "number") {
-        setHeight(Math.max(e.data.value, defaultHeight));
-      }
-    }
-    window.addEventListener("message", onMessage);
-    return () => window.removeEventListener("message", onMessage);
-  }, [iframeId, enabled, defaultHeight]);
-  return height;
 }
 
 const factsRows = [
@@ -61,8 +40,7 @@ const coverList = [
 
 export default function BookSection() {
   const isEmbeddedForm = BOOKING_MODE !== "simple_link";
-  useGHLScript(isEmbeddedForm);
-  const iframeHeight = useIframeHeight(GHL_IFRAME_ID, isEmbeddedForm);
+  useFormFlowScript(isEmbeddedForm);
 
   return (
     <section id="book" style={{ padding: "7rem 0", position: "relative", overflow: "hidden" }}>
@@ -116,14 +94,8 @@ export default function BookSection() {
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(340px, 1fr))", gap: "1.5rem", alignItems: "start" }}>
           {/* Booking widget */}
           {isEmbeddedForm ? (
-            <div style={{ background: "#1e2023", border: "1px solid rgba(255,140,0,0.15)", borderRadius: "4px", overflow: "hidden" }}>
-              <iframe
-                src={`https://api.leadconnectorhq.com/widget/form/${GHL_IFRAME_ID}`}
-                style={{ width: "100%", border: "none", display: "block", height: `${iframeHeight}px`, transition: "height 0.3s ease" }}
-                scrolling="no"
-                id={GHL_IFRAME_ID}
-                title="Free Consultation booking form"
-              />
+            <div style={{ background: "#1e2023", border: "1px solid rgba(255,140,0,0.15)", borderRadius: "4px", overflow: "hidden", height: "700px" }}>
+              <div id="formflow-embed" data-form-id={FORMFLOW_FORM_ID} />
             </div>
           ) : (
             <div
